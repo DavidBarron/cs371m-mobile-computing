@@ -21,11 +21,22 @@
         android:gravity="center"
         android:textSize="40dp"
         android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:shadowColor="#000000"
+        android:shadowDx="1.0"
+        android:shadowDy="1.0"
+        android:shadowRadius="10.0"
         android:text="Food With Friends" />
+
+    <ImageView
+        android:src="@drawable/main_img_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/myselfButton"
         android:text="@string/myselfButton_str"
+        android:textStyle="bold"
         android:background="#ff2000"
         android:textColor="#ffffff"
         android:layout_width="match_parent"
@@ -34,10 +45,10 @@
     <Button
         android:id="@+id/friendsButton"
         android:text="@string/friendsButton_str"
+        android:textStyle="bold"
         android:background="#ff2000"
         android:textColor="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
 
 </LinearLayout>
