@@ -18,6 +18,7 @@
     <TextView android:id="@+id/app_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:textSize="40dp"
         android:textColor="#ffffff"
@@ -28,10 +29,19 @@
         android:shadowRadius="10.0"
         android:text="Food With Friends" />
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+
     <ImageView
         android:src="@drawable/main_img_temp"
+        android:adjustViewBounds="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="70dp"/>
 
     <Button
         android:id="@+id/myselfButton"
@@ -39,6 +49,7 @@
         android:textStyle="bold"
         android:background="#ff2000"
         android:textColor="#ffffff"
+        android:layout_margin="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -48,6 +59,7 @@
         android:textStyle="bold"
         android:background="#ff2000"
         android:textColor="#ffffff"
+        android:layout_margin="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
