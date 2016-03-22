@@ -26,5 +26,4 @@ public class SetLikesActivity extends AppCompatActivity {
         //});
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
-
 }
