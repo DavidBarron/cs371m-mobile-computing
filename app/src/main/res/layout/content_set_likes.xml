@@ -14,4 +14,56 @@
     tools:context="davidbar.foodwithfriends.SetLikesActivity"
     tools:showIn="@layout/activity_set_likes">
 
+    <!-- non-scrolling top pane -->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="This text will not scroll"
+            />
+
+    </LinearLayout>
+
+    <!-- scrolling middle pane -->
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="This text will scroll if it is long enough..."
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- non-scrolling bottom pane -->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="This text will not scroll"
+            />
+
+    </LinearLayout>
+
 </LinearLayout>
