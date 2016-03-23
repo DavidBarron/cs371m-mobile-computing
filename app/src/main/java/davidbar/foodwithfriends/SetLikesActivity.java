@@ -34,11 +34,11 @@ public class SetLikesActivity extends AppCompatActivity {
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    public void clickMyselfButton2(View view) {
+    public void clickFoodButton(View view) {
         //Intent intent = new Intent(this, SetLikesActivity.class);
         //startActivity(intent);
 
-        Button button = (Button) findViewById(R.id.myselfButton2);
+        Button button = (Button) findViewById(R.id.foodButton1);
 
         Log.d(TAG,"CLICK!!");
 

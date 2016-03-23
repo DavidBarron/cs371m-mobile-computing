@@ -34,7 +34,7 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="7"
         >
 
         <LinearLayout
@@ -47,59 +47,137 @@
         
 
             <Button
-                android:id="@+id/myselfButton1"
-                android:text="@string/myselfButton_str"
+                android:id="@+id/foodButton1"
+                android:text="@string/food1"
                 android:textStyle="bold"
                 android:background="#000000"
                 android:textColor="#ffffff"
                 android:layout_margin="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="clickFoodButton"
                 />
 
             <Button
-                android:id="@+id/myselfButton2"
-                android:text="@string/myselfButton_str"
+                android:id="@+id/foodButton2"
+                android:text="@string/food2"
                 android:textStyle="bold"
                 android:background="#000000"
                 android:textColor="#ffffff"
                 android:layout_margin="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="clickMyselfButton2"/>
+                android:onClick="clickFoodButton"
+                />
 
             <Button
-                android:id="@+id/myselfButton3"
-                android:text="@string/myselfButton_str"
+                android:id="@+id/foodButton3"
+                android:text="@string/food3"
                 android:textStyle="bold"
                 android:background="#ff2000"
                 android:textColor="#ffffff"
                 android:layout_margin="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="clickFoodButton"
                 />
 
             <Button
-                android:id="@+id/myselfButton4"
-                android:text="@string/myselfButton_str"
+                android:id="@+id/foodButton4"
+                android:text="@string/food4"
                 android:textStyle="bold"
                 android:background="#ff2000"
                 android:textColor="#ffffff"
                 android:layout_margin="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="clickFoodButton"
                 />
 
             <Button
-                android:id="@+id/myselfButton5"
-                android:text="@string/myselfButton_str"
+                android:id="@+id/foodButton5"
+                android:text="@string/food5"
                 android:textStyle="bold"
                 android:background="#ff2000"
                 android:textColor="#ffffff"
                 android:layout_margin="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="clickFoodButton"
                 />
+
+            <Button
+                android:id="@+id/foodButton6"
+                android:text="@string/food6"
+                android:textStyle="bold"
+                android:background="#ff2000"
+                android:textColor="#ffffff"
+                android:layout_margin="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="clickFoodButton"
+                />
+
+            <Button
+                android:id="@+id/foodButton7"
+                android:text="@string/food7"
+                android:textStyle="bold"
+                android:background="#ff2000"
+                android:textColor="#ffffff"
+                android:layout_margin="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="clickFoodButton"
+                />
+
+            <Button
+                android:id="@+id/foodButton8"
+                android:text="@string/food8"
+                android:textStyle="bold"
+                android:background="#ff2000"
+                android:textColor="#ffffff"
+                android:layout_margin="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="clickFoodButton"
+                />
+
+            <Button
+                android:id="@+id/foodButton9"
+                android:text="@string/food9"
+                android:textStyle="bold"
+                android:background="#ff2000"
+                android:textColor="#ffffff"
+                android:layout_margin="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="clickFoodButton"
+                />
+
+            <Button
+                android:id="@+id/foodButton10"
+                android:text="@string/food10"
+                android:textStyle="bold"
+                android:background="#ff2000"
+                android:textColor="#ffffff"
+                android:layout_margin="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="clickFoodButton"
+                />
+
+            <Button
+                android:id="@+id/foodButton11"
+                android:text="@string/food11"
+                android:textStyle="bold"
+                android:background="#ff2000"
+                android:textColor="#ffffff"
+                android:layout_margin="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="clickFoodButton"
+                />
+
 
         </LinearLayout>
 

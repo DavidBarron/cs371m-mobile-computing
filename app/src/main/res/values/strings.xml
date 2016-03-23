@@ -5,4 +5,16 @@
     <string name="friendsButton_str">Invite Friends to Join Me</string>
     <string name="title_activity_set_likes">SetLikesActivity</string>
     <string name="header_set_likes">Set your likes and dislikes</string>
+    <string name="food1">American</string>
+    <string name="food2">Chinese</string>
+    <string name="food3">Cuban</string>
+    <string name="food4">Indian</string>
+    <string name="food5">Italian</string>
+    <string name="food6">Japanese</string>
+    <string name="food7">Korean</string>
+    <string name="food8">Mexican</string>
+    <string name="food9">Taiwanese</string>
+    <string name="food10">Thai</string>
+    <string name="food11">Vietnamese</string>
+
 </resources>
