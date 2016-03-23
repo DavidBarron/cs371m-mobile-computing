@@ -69,4 +69,11 @@ public class SetLikesActivity extends AppCompatActivity {
                 break;
         }
     }
+
+    /** Called when the user clicks the Next button */
+    public void clickNextButton(View view) {
+        Log.d(TAG, "CLICK!!");
+        Intent intent = new Intent(this, SetLocationActivity.class);
+        startActivity(intent);
+    }
 }

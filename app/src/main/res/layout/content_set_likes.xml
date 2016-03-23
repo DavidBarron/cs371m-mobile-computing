@@ -35,6 +35,7 @@
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="7"
+        android:background="#ff888880"
         >
 
         <LinearLayout
@@ -187,10 +188,16 @@
         android:layout_weight="1"
         >
 
-        <TextView
-            android:layout_width="fill_parent"
+        <Button
+            android:id="@+id/nextButton"
+            android:text="@string/next"
+            android:textStyle="bold"
+            android:background="#ff2000"
+            android:textColor="#ffffff"
+            android:layout_margin="15dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="This text will not scroll"
+            android:onClick="clickNextButton"
             />
 
     </LinearLayout>

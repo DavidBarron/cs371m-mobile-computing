@@ -27,6 +27,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="davidbar.foodwithfriends.MainActivity" />
         </activity>
+        <activity
+            android:name=".SetLocationActivity"
+            android:label="@string/title_activity_set_location"
+            android:parentActivityName=".SetLikesActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="davidbar.foodwithfriends.SetLikesActivity" />
+        </activity>
     </application>
 
 </manifest>
