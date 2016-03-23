@@ -2,6 +2,9 @@ package davidbar.foodwithfriends;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.PaintDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -35,19 +38,33 @@ public class SetLikesActivity extends AppCompatActivity {
     }
 
     public void clickFoodButton(View view) {
-        //Intent intent = new Intent(this, SetLikesActivity.class);
-        //startActivity(intent);
 
-        Button button = (Button) findViewById(R.id.foodButton1);
+        Button button = (Button) findViewById(view.getId());
 
+        // Get the color of the button
+        ColorDrawable drawable = (ColorDrawable)button.getBackground();
+        int color = drawable.getColor();
+
+        // Get text of button as String
+        String buttonText = (String) button.getText();
+
+        // Debug info
         Log.d(TAG,"CLICK!!");
+        Log.d(TAG,"Color is : ".concat(String.valueOf(color)));
+        Log.d(TAG,"Text is : ".concat(buttonText));
 
-        if(toggle){
-            toggle = false;
-            button.setBackgroundColor(Color.BLUE);
-        }else{
-            toggle = true;
-            button.setBackgroundColor(Color.RED);
+
+        // Flip through the 3 colors
+        switch(color){
+            case Color.YELLOW:
+                button.setBackgroundColor(Color.GREEN);
+                break;
+            case Color.GREEN:
+                button.setBackgroundColor(Color.RED);
+                break;
+            case Color.RED:
+                button.setBackgroundColor(Color.YELLOW);
+                break;
         }
     }
 }
