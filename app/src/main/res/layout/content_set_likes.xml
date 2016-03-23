@@ -24,8 +24,9 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="This text will not scroll"
-            />
+            android:gravity="center"
+            android:textColor="#000000"
+            android:text="@string/header_set_likes" />
 
     </LinearLayout>
 
@@ -33,18 +34,71 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="3"
         >
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
+
+            android:orientation="vertical"
             >
 
-            <TextView
-                android:layout_width="fill_parent"
+        
+
+            <Button
+                android:id="@+id/myselfButton1"
+                android:text="@string/myselfButton_str"
+                android:textStyle="bold"
+                android:background="#000000"
+                android:textColor="#ffffff"
+                android:layout_margin="15dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="This text will scroll if it is long enough..."
+                />
+
+            <Button
+                android:id="@+id/myselfButton2"
+                android:text="@string/myselfButton_str"
+                android:textStyle="bold"
+                android:background="#000000"
+                android:textColor="#ffffff"
+                android:layout_margin="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="clickMyselfButton2"/>
+
+            <Button
+                android:id="@+id/myselfButton3"
+                android:text="@string/myselfButton_str"
+                android:textStyle="bold"
+                android:background="#ff2000"
+                android:textColor="#ffffff"
+                android:layout_margin="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <Button
+                android:id="@+id/myselfButton4"
+                android:text="@string/myselfButton_str"
+                android:textStyle="bold"
+                android:background="#ff2000"
+                android:textColor="#ffffff"
+                android:layout_margin="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <Button
+                android:id="@+id/myselfButton5"
+                android:text="@string/myselfButton_str"
+                android:textStyle="bold"
+                android:background="#ff2000"
+                android:textColor="#ffffff"
+                android:layout_margin="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 />
 
         </LinearLayout>

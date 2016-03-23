@@ -26,7 +26,7 @@
         android:shadowDx="1.0"
         android:shadowDy="1.0"
         android:shadowRadius="10.0"
-        android:text="Food With Friends" />
+        android:text="@string/app_name" />
 
     <Space
         android:layout_width="match_parent"
