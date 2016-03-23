@@ -17,7 +17,6 @@ import android.widget.Button;
 public class SetLikesActivity extends AppCompatActivity {
 
     private static final String TAG = "SetLikesDislikes";
-    private boolean toggle = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +36,7 @@ public class SetLikesActivity extends AppCompatActivity {
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    //
     public void clickFoodButton(View view) {
 
         Button button = (Button) findViewById(view.getId());
@@ -53,17 +53,19 @@ public class SetLikesActivity extends AppCompatActivity {
         Log.d(TAG,"Color is : ".concat(String.valueOf(color)));
         Log.d(TAG,"Text is : ".concat(buttonText));
 
-
         // Flip through the 3 colors
         switch(color){
             case Color.YELLOW:
                 button.setBackgroundColor(Color.GREEN);
+                button.setTextColor(Color.WHITE);
                 break;
             case Color.GREEN:
                 button.setBackgroundColor(Color.RED);
+                button.setTextColor(Color.WHITE);
                 break;
             case Color.RED:
                 button.setBackgroundColor(Color.YELLOW);
+                button.setTextColor(Color.BLACK);
                 break;
         }
     }
