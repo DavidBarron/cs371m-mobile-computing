@@ -26,5 +26,4 @@ public class SetLocationActivity extends AppCompatActivity {
         //});
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
-
 }
