@@ -1,13 +1,17 @@
 package davidbar.foodwithfriends;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 public class SetLocationActivity extends AppCompatActivity {
+
+    private static final String TAG = "SetLocation";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,5 +29,12 @@ public class SetLocationActivity extends AppCompatActivity {
         //    }
         //});
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    /** Called when the user clicks the Next button */
+    public void clickNextButton(View view) {
+        Log.d(TAG, "CLICK!!");
+        Intent intent = new Intent(this, ScoreAPIActivity.class);
+        startActivity(intent);
     }
 }

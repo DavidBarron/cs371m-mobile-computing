@@ -18,5 +18,6 @@
     <string name="food10">Thai</string>
     <string name="food11">Vietnamese</string>
     <string name="title_activity_set_location">SetLocationActivity</string>
+    <string name="title_activity_score_api">ScoreAPIActivity</string>
 
 </resources>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="#ff888888"
-    tools:context="davidbar.foodwithfriends.SetLikesActivity">
+    tools:context="davidbar.foodwithfriends.ScoreAPIActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -15,6 +15,8 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_set_location" />
+    <include layout="@layout/content_score_api" />
+
+
 
 </android.support.design.widget.CoordinatorLayout>

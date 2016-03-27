@@ -12,4 +12,16 @@
     tools:context="davidbar.foodwithfriends.SetLocationActivity"
     tools:showIn="@layout/activity_set_location">
 
+    <Button
+        android:id="@+id/nextButton"
+        android:text="@string/next"
+        android:textStyle="bold"
+        android:background="#ff2000"
+        android:textColor="#ffffff"
+        android:layout_margin="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="clickNextButton"
+        />
+
 </RelativeLayout>
