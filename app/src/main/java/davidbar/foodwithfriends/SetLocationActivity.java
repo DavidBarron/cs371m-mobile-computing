@@ -9,6 +9,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
+import java.util.HashMap;
+
 public class SetLocationActivity extends AppCompatActivity {
 
     private static final String TAG = "SetLocation";
@@ -32,9 +34,13 @@ public class SetLocationActivity extends AppCompatActivity {
     }
 
     /** Called when the user clicks the Next button */
+    @SuppressWarnings("unchecked")
     public void clickNextButton(View view) {
         Log.d(TAG, "CLICK!!");
         Intent intent = new Intent(this, ScoreAPIActivity.class);
+        Intent i = getIntent();
+        HashMap<String, Integer> map = (HashMap)i.getSerializableExtra("likes");
+        Log.d(TAG, "MAP in SetLocation is: " + map.toString());
         startActivity(intent);
     }
 }

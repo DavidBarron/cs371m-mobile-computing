@@ -3,8 +3,6 @@ package davidbar.foodwithfriends;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.PaintDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,7 +13,7 @@ import android.view.View;
 import android.widget.Button;
 
 import java.util.HashMap;
-import java.util.Map;
+
 
 public class SetLikesActivity extends AppCompatActivity {
 
@@ -26,7 +24,7 @@ public class SetLikesActivity extends AppCompatActivity {
                                               "Japanese", "Korean", "Mexican", "Taiwanese", "Thai"};
 
     // Used to store user scores
-    private Map<String, Integer> likes;
+    private HashMap<String, Integer> likes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +47,9 @@ public class SetLikesActivity extends AppCompatActivity {
     }
 
     // Initialize our likes Map with cuisine keys and values of zero
-    private Map<String, Integer> initLikes(){
+    private HashMap<String, Integer> initLikes(){
 
-        Map<String, Integer> map = new HashMap<String, Integer>();
+        HashMap<String, Integer> map = new HashMap<String, Integer>();
 
         for(String s : CUISINES){
             map.put(s, 0);
@@ -104,6 +102,7 @@ public class SetLikesActivity extends AppCompatActivity {
         Log.d(TAG, "CLICK!!");
         Log.d(TAG, "FINAL MAP: " + likes.toString());
         Intent intent = new Intent(this, SetLocationActivity.class);
+        intent.putExtra("likes", likes);
         startActivity(intent);
     }
 }
