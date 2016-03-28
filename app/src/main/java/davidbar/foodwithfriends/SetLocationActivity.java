@@ -43,4 +43,11 @@ public class SetLocationActivity extends AppCompatActivity {
         Log.d(TAG, "MAP in SetLocation is: " + map.toString());
         startActivity(intent);
     }
+
+    /* Called when the user clicks the Next button */
+    public void clickBackButton(View view) {
+        Log.d(TAG, "CLICK!!");
+        Intent intent = new Intent(this, SetLikesActivity.class);
+        startActivity(intent);
+    }
 }

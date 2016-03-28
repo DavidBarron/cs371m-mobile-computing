@@ -6,6 +6,7 @@
     <string name="title_activity_set_likes">SetLikesActivity</string>
     <string name="header_set_likes">Set your likes and dislikes</string>
     <string name="next">Next</string>
+    <string name="back">Back</string>
     <string name="food1">American</string>
     <string name="food2">Chinese</string>
     <string name="food3">Cuban</string>
@@ -19,5 +20,6 @@
     <string name="food11">Vietnamese</string>
     <string name="title_activity_set_location">SetLocationActivity</string>
     <string name="title_activity_score_api">ScoreAPIActivity</string>
+    <string name="header_set_location">Set your location</string>
 
 </resources>
