@@ -14,9 +14,19 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class SetLikesActivity extends AppCompatActivity {
 
     private static final String TAG = "SetLikesDislikes";
+
+    // Cuisines user currently can set
+    private static final String[] CUISINES = {"American", "Chinese", "Cuban", "Indian", "Italian",
+                                              "Japanese", "Korean", "Mexican", "Taiwanese", "Thai"};
+
+    // Used to store user scores
+    private Map<String, Integer> likes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +44,25 @@ public class SetLikesActivity extends AppCompatActivity {
         //    }
         //});
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        likes = initLikes();
     }
 
-    //
+    // Initialize our likes Map with cuisine keys and values of zero
+    private Map<String, Integer> initLikes(){
+
+        Map<String, Integer> map = new HashMap<String, Integer>();
+
+        for(String s : CUISINES){
+            map.put(s, 0);
+        }
+
+        return map;
+    }
+
+    // Called when user clicks one of the cuisines to set like or dislike
+    // Changes the color of the button to green, yellow, or red on like, neutral, or dislike
+    // Updates respective likes Map key to 1, 0, or -1
     public void clickFoodButton(View view) {
 
         Button button = (Button) findViewById(view.getId());
@@ -58,14 +84,17 @@ public class SetLikesActivity extends AppCompatActivity {
             case Color.YELLOW:
                 button.setBackgroundColor(Color.GREEN);
                 button.setTextColor(Color.WHITE);
+                likes.put(buttonText, 1);
                 break;
             case Color.GREEN:
                 button.setBackgroundColor(Color.RED);
                 button.setTextColor(Color.WHITE);
+                likes.put(buttonText, -1);
                 break;
             case Color.RED:
                 button.setBackgroundColor(Color.YELLOW);
                 button.setTextColor(Color.BLACK);
+                likes.put(buttonText, 0);
                 break;
         }
     }
@@ -73,6 +102,7 @@ public class SetLikesActivity extends AppCompatActivity {
     /** Called when the user clicks the Next button */
     public void clickNextButton(View view) {
         Log.d(TAG, "CLICK!!");
+        Log.d(TAG, "FINAL MAP: " + likes.toString());
         Intent intent = new Intent(this, SetLocationActivity.class);
         startActivity(intent);
     }
