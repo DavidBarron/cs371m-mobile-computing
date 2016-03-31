@@ -90,8 +90,11 @@ public class SetLocationActivity extends AppCompatActivity {
                     || checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 location = locationManager.getLastKnownLocation(locationProvider);
             }
+            Log.d(TAG, "API 23 or greater");
         } else {
+            //locationManager.requestLocationUpdates(locationProvider, 0, 0, this);
             location = locationManager.getLastKnownLocation(locationProvider);
+            Log.d(TAG, "Lower than API 23");
         }
 
         if (location != null) {
@@ -101,6 +104,8 @@ public class SetLocationActivity extends AppCompatActivity {
             Log.d(TAG, "GPS successfully set location");
             showToast(getString(R.string.location_set));
             updateLatLonText();
+        }else{
+            showToast(getString(R.string.gps_inaccessible));
         }
     }
 

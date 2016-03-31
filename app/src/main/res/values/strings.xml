@@ -31,7 +31,8 @@
     <string name="string_lon_init">LON : not set</string>
     <string name="string_lat">LAT : %1$f</string>
     <string name="string_lon">LON : %1$f</string>
-
+    <string name="title_activity_result">ResultActivity</string>
+    <string name="gps_inaccessible">Cannot access GPS. Please enter an address instead.</string>
 
 
 </resources>
