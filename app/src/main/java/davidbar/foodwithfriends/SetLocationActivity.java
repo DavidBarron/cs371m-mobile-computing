@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
@@ -14,8 +16,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class SetLocationActivity extends AppCompatActivity {
 
@@ -48,6 +52,21 @@ public class SetLocationActivity extends AppCompatActivity {
     /** Address String is converted to GPS coordinates */
     public void clickSubmitButton(View view) {
         Log.d(TAG, "CLICK!!");
+
+        EditText editText = (EditText) findViewById(R.id.addressText);
+        Geocoder coder = new Geocoder(this);
+        List<Address> address;
+
+        try {
+            address = coder.getFromLocationName(editText.getText().toString(), 1);
+            Address location = address.get(0);
+            latitude = location.getLatitude();
+            longitude = location.getLongitude();
+            locationSet = true;
+
+        } catch (Exception ex) {
+            // TODO: Tell user something is wrong, try again
+        }
     }
 
     /** Called when the user clicks the Submit button */
