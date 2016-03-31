@@ -17,6 +17,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.List;
@@ -63,9 +65,11 @@ public class SetLocationActivity extends AppCompatActivity {
             latitude = location.getLatitude();
             longitude = location.getLongitude();
             locationSet = true;
+            showToast(getString(R.string.location_set));
+            updateLatLonText();
 
         } catch (Exception ex) {
-            // TODO: Tell user something is wrong, try again
+            showToast(getString(R.string.address_error));
         }
     }
 
@@ -95,6 +99,8 @@ public class SetLocationActivity extends AppCompatActivity {
             longitude = location.getLongitude();
             locationSet = true;
             Log.d(TAG, "GPS successfully set location");
+            showToast(getString(R.string.location_set));
+            updateLatLonText();
         }
     }
 
@@ -113,7 +119,7 @@ public class SetLocationActivity extends AppCompatActivity {
             intent.putExtra("longitude", longitude);
             startActivity(intent);
         } else {
-            // Notify user location not set
+            showToast(getString(R.string.location_not_set));
         }
     }
 
@@ -122,5 +128,25 @@ public class SetLocationActivity extends AppCompatActivity {
         Log.d(TAG, "CLICK!!");
         Intent intent = new Intent(this, SetLikesActivity.class);
         startActivity(intent);
+    }
+
+    // Display toast with input text
+    private void showToast(String text){
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+    }
+
+    // Updates the Lat and Lon strings
+    private void updateLatLonText(){
+        TextView lat = (TextView) findViewById(R.id.lat);
+        TextView lon = (TextView) findViewById(R.id.lon);
+        String str_lat = getString(R.string.string_lat);
+        String str_lon = getString(R.string.string_lon);
+
+        lat.setText(String.format(str_lat, latitude));
+        lon.setText(String.format(str_lon, longitude));
     }
 }
