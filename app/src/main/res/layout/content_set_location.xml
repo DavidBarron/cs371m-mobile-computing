@@ -26,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="62dp"
         android:layout_below="@+id/textView"
+        android:hint="@string/hint_address"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -37,7 +38,7 @@
         android:textColor="#ffffff"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:onClick="clickBackButton"
+        android:onClick="clickSubmitButton"
         android:layout_below="@+id/addLocation"
         android:layout_alignRight="@+id/addLocation"
         android:layout_alignEnd="@+id/addLocation" />
@@ -76,7 +77,7 @@
         android:textColor="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="clickBackButton"
+        android:onClick="clickGPSButton"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 

@@ -32,12 +32,13 @@ package davidbar.foodwithfriends;
 import java.util.List;
 import java.util.Map;
 
-import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -45,10 +46,13 @@ import com.factual.driver.Circle;
 import com.factual.driver.Factual;
 import com.factual.driver.Query;
 import com.factual.driver.ReadResponse;
+
 import com.google.common.collect.Lists;
 
-public class ScoreAPIActivity extends Activity {
+public class ScoreAPIActivity extends AppCompatActivity {
 
+    // Factual API keys (free account)
+    // Should obfuscate this ASAP!!!
     private final String authKey = "Y0NdQGfaA3M05zw0LGtPY2y5lp7CrDklONLSXsa3";
     private final String authSecret = "d08VLmXB9jBCX0wcAb25BUVx3we2FEQiBaqHBKtW";
 
@@ -59,21 +63,17 @@ public class ScoreAPIActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_api);
         resultText = (TextView) findViewById(R.id.resultText);
         FactualRetrievalTask task = new FactualRetrievalTask();
+        Intent thisIntent = getIntent();
 
-        double latitude = 34.06018;
-        double longitude = -118.41835;
-        int meters = 5000;
-        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        String locationProvider = LocationManager.GPS_PROVIDER;
-        Location location = locationManager.getLastKnownLocation(locationProvider);
-        if (location != null) {
-            latitude = location.getLatitude();
-            longitude = location.getLongitude();
-        }
+
+        double latitude = (Double)thisIntent.getSerializableExtra("latitude");
+        double longitude = (Double)thisIntent.getSerializableExtra("longitude");
+        int meters = 5000;      // hardcode location to 5 km
 
         Log.d(TAG, "LAT: " + latitude);
         Log.d(TAG, "LON: " + longitude);
@@ -116,6 +116,5 @@ public class ScoreAPIActivity extends Activity {
             }
             resultText.setText(sb.toString());
         }
-
     }
 }

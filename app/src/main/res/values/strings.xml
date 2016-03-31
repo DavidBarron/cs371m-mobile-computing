@@ -8,7 +8,7 @@
     <string name="next">Next</string>
     <string name="back">Back</string>
     <string name="submit">Submit</string>
-    <string name="getLocation">Get current location</string>
+    <string name="getLocation">Set using GPS</string>
     <string name="food1">American</string>
     <string name="food2">Chinese</string>
     <string name="food3">Cuban</string>
@@ -20,9 +20,10 @@
     <string name="food9">Taiwanese</string>
     <string name="food10">Thai</string>
     <string name="food11">Vietnamese</string>
+    <string name="hint_address">Enter Address</string>
     <string name="title_activity_set_location">SetLocationActivity</string>
     <string name="title_activity_score_api">ScoreAPIActivity</string>
-    <string name="header_set_location">Set your location</string>
+    <string name="header_set_location">Get starting location</string>
 
 
 </resources>
