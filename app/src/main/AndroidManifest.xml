@@ -45,7 +45,7 @@
         <activity
             android:name=".ScoreAPIActivity"
             android:label="@string/title_activity_score_api"
-            android:parentActivityName=".SetLikesActivity"
+            android:parentActivityName=".SetLocationActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
