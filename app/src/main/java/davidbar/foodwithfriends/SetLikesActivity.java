@@ -23,6 +23,10 @@ public class SetLikesActivity extends AppCompatActivity {
     private static final String[] CUISINES = {"American", "Chinese", "Cuban", "Indian", "Italian",
                                               "Japanese", "Korean", "Mexican", "Taiwanese", "Thai"};
 
+    static final int color_gold = Color.parseColor("#FFD700");
+    static final int color_green = Color.parseColor("#32CD32");
+    static final int color_red = Color.parseColor("#FF0000");
+
     // Used to store user scores
     private HashMap<String, Integer> likes;
 
@@ -78,23 +82,37 @@ public class SetLikesActivity extends AppCompatActivity {
         Log.d(TAG,"Text is : ".concat(buttonText));
 
         // Flip through the 3 colors
-        switch(color){
-            case Color.YELLOW:
-                button.setBackgroundColor(Color.GREEN);
-                button.setTextColor(Color.WHITE);
-                likes.put(buttonText, 1);
-                break;
-            case Color.GREEN:
-                button.setBackgroundColor(Color.RED);
-                button.setTextColor(Color.WHITE);
-                likes.put(buttonText, -1);
-                break;
-            case Color.RED:
-                button.setBackgroundColor(Color.YELLOW);
-                button.setTextColor(Color.BLACK);
-                likes.put(buttonText, 0);
-                break;
+        if(color == color_gold){
+            button.setBackgroundColor(color_green);
+            button.setTextColor(Color.WHITE);
+            likes.put(buttonText, 1);
+        }else if(color == color_green){
+            button.setBackgroundColor(color_red);
+            button.setTextColor(Color.WHITE);
+            likes.put(buttonText, -1);
+        }else if(color == color_red){
+            button.setBackgroundColor(color_gold);
+            button.setTextColor(Color.BLACK);
+            likes.put(buttonText, 0);
         }
+
+//        switch(color){
+//            case Color.GREEN:
+//                button.setBackgroundColor(Color.RED);
+//                button.setTextColor(Color.WHITE);
+//                likes.put(buttonText, -1);
+//                break;
+//            case Color.RED:
+//                button.setBackgroundColor(Color.YELLOW);
+//                button.setTextColor(Color.BLACK);
+//                likes.put(buttonText, 0);
+//                break;
+//            default:
+//                button.setBackgroundColor(Color.GREEN);
+//                button.setTextColor(Color.WHITE);
+//                likes.put(buttonText, 1);
+//                break;
+//        }
     }
 
     /** Called when the user clicks the Next button */

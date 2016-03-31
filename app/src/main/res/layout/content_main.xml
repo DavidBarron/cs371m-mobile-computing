@@ -14,6 +14,10 @@
     tools:context="davidbar.foodwithfriends.MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+
     <TextView android:id="@+id/app_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,23 +34,19 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="20dp"/>
+        android:layout_height="70dp"/>
 
     <ImageView
-        android:src="@drawable/main_img_temp"
+        android:src="@drawable/main_img_temp1"
         android:adjustViewBounds="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="70dp"/>
 
     <Button
         android:id="@+id/myselfButton"
         android:text="@string/myselfButton_str"
         android:textStyle="bold"
-        android:background="#ff2000"
+        android:background="#20B2AA"
         android:textColor="#ffffff"
         android:layout_margin="15dp"
         android:layout_width="match_parent"
@@ -57,7 +57,7 @@
         android:id="@+id/friendsButton"
         android:text="@string/friendsButton_str"
         android:textStyle="bold"
-        android:background="#ff2000"
+        android:background="#FF7F50"
         android:textColor="#ffffff"
         android:layout_margin="15dp"
         android:layout_width="match_parent"
