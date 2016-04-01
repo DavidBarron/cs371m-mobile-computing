@@ -1,11 +1,13 @@
 package davidbar.foodwithfriends;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 public class ResultActivity extends AppCompatActivity {
 
@@ -25,6 +27,15 @@ public class ResultActivity extends AppCompatActivity {
         //    }
         //});
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
 
+        Intent thisIntent = getIntent();
+
+        TextView nameText = (TextView) findViewById(R.id.result_name_blank);
+        TextView addressText = (TextView) findViewById(R.id.result_address_blank);
+        TextView phoneText = (TextView) findViewById(R.id.result_phone_blank);
+
+        nameText.setText((String)thisIntent.getSerializableExtra("name"));
+        addressText.setText((String)thisIntent.getSerializableExtra("address"));
+        phoneText.setText((String)thisIntent.getSerializableExtra("phone"));
+    }
 }

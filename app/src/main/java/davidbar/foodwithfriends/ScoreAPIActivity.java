@@ -114,7 +114,14 @@ public class ScoreAPIActivity extends AppCompatActivity {
                     sb.append(System.getProperty("line.separator"));
                 }
             }
-            resultText.setText(sb.toString());
+            Log.d(TAG,sb.toString());
+            Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
+            Map<String, Object> restaurant = responses.get(0).getData().get(0);
+            intent.putExtra("name", (String) restaurant.get("name"));
+            intent.putExtra("address", (String) restaurant.get("address"));
+            intent.putExtra("phone", (String) restaurant.get("tel"));
+
+            startActivity(intent);
         }
     }
 }

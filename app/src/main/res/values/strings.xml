@@ -33,6 +33,13 @@
     <string name="string_lon">LON : %1$f</string>
     <string name="title_activity_result">ResultActivity</string>
     <string name="gps_inaccessible">Cannot access GPS. Please enter an address instead.</string>
+    <string name="header_result">Your Result</string>
+    <string name="str_name">NAME:</string>
+    <string name="str_address">ADDRESS:</string>
+    <string name="str_phone">PHONE:</string>
+    <string name="str_result_error">No result to display.</string>
+    <string name="wait">PLEASE WAIT...</string>
+
 
 
 </resources>
