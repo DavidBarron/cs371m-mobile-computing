@@ -122,6 +122,7 @@ public class SetLocationActivity extends AppCompatActivity {
             Log.d(TAG, "MAP in SetLocation is: " + map.toString());
             intent.putExtra("latitude", latitude);
             intent.putExtra("longitude", longitude);
+            intent.putExtra("likes", map);
             startActivity(intent);
         } else {
             showToast(getString(R.string.location_not_set));

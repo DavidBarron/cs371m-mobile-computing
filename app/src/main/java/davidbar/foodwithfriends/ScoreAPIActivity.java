@@ -29,6 +29,7 @@ package davidbar.foodwithfriends;
 //
 //}
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -57,7 +58,6 @@ public class ScoreAPIActivity extends AppCompatActivity {
     private final String authSecret = "d08VLmXB9jBCX0wcAb25BUVx3we2FEQiBaqHBKtW";
 
     protected Factual factual = new Factual(authKey, authSecret);
-    private TextView resultText = null;
 
     private static final String TAG = "ScoreAPIActivity";
 
@@ -66,21 +66,38 @@ public class ScoreAPIActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_api);
-        resultText = (TextView) findViewById(R.id.resultText);
         FactualRetrievalTask task = new FactualRetrievalTask();
         Intent thisIntent = getIntent();
 
+        // UGLY CODE BELOW!!! :(
+
+        HashMap<String, Integer> map = (HashMap) thisIntent.getSerializableExtra("likes");
+
+        HashMap<String, List> likes = CuisineMagic.sortSingleUserLikes(map);
 
         double latitude = (Double)thisIntent.getSerializableExtra("latitude");
         double longitude = (Double)thisIntent.getSerializableExtra("longitude");
         int meters = 5000;      // hardcode location to 5 km
+
+        List queryList = likes.get("like");
+        if(queryList.size() == 0){
+            queryList = likes.get("neutral");
+        }
+
+        String cuisine;
+
+        if(queryList.size() != 0) {
+            cuisine = CuisineMagic.chooseRandomCuisine(queryList);
+        } else{
+            cuisine = "Italian";
+        }
 
         Log.d(TAG, "LAT: " + latitude);
         Log.d(TAG, "LON: " + longitude);
 
         Query query = new Query()
                 .within(new Circle(latitude, longitude, meters))
-                .field("cuisine").equal("Italian")
+                .field("cuisine").equal(cuisine)
                 .sortAsc("$distance")
                 .only("name", "address", "tel");
 
