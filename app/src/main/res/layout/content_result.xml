@@ -71,6 +71,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textColor="#000000"
+        android:autoLink="map"
+        android:linksClickable="true"
         android:text="@string/str_result_error" />
 
     <Space
@@ -95,6 +97,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textColor="#000000"
+        android:autoLink="phone"
+        android:linksClickable="true"
         android:text="@string/str_result_error" />
 
 </LinearLayout>

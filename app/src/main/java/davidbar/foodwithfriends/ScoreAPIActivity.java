@@ -99,7 +99,7 @@ public class ScoreAPIActivity extends AppCompatActivity {
                 .within(new Circle(latitude, longitude, meters))
                 .field("cuisine").equal(cuisine)
                 .sortAsc("$distance")
-                .only("name", "address", "tel");
+                .only("name", "address", "tel","locality", "region", "postcode");
 
         task.execute(query);
     }
@@ -123,6 +123,7 @@ public class ScoreAPIActivity extends AppCompatActivity {
             StringBuffer sb = new StringBuffer();
             for (ReadResponse response : responses) {
                 for (Map<String, Object> restaurant : response.getData()) {
+                    Log.d(TAG, restaurant.toString());
                     String name = (String) restaurant.get("name");
                     String address = (String) restaurant.get("address");
                     String phone = (String) restaurant.get("tel");
@@ -135,7 +136,10 @@ public class ScoreAPIActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
             Map<String, Object> restaurant = responses.get(0).getData().get(0);
             intent.putExtra("name", (String) restaurant.get("name"));
-            intent.putExtra("address", (String) restaurant.get("address"));
+            intent.putExtra("address", (String)restaurant.get("address") + ", "
+                    + (String)restaurant.get("locality") + " "
+                    + (String)restaurant.get("region") + ", "
+                    + (String)restaurant.get("postcode"));
             intent.putExtra("phone", (String) restaurant.get("tel"));
 
             startActivity(intent);
