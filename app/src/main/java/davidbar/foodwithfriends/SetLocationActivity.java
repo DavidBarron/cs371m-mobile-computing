@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 public class SetLocationActivity extends AppCompatActivity {
 
@@ -58,7 +59,7 @@ public class SetLocationActivity extends AppCompatActivity {
         Log.d(TAG, "CLICK!!");
 
         EditText editText = (EditText) findViewById(R.id.addressText);
-        Geocoder coder = new Geocoder(this);
+        Geocoder coder = new Geocoder(this, Locale.getDefault());
         List<Address> address;
 
         try {
@@ -132,10 +133,12 @@ public class SetLocationActivity extends AppCompatActivity {
     }
 
     /** Called when the user clicks the Next button */
-    public void clickBackButton(View view) {
+    protected void clickBackButton(View view) {
         Log.d(TAG, "CLICK!!");
         Intent intent = new Intent(this, SetLikesActivity.class);
-        mToast.cancel();
+        if(mToast != null) {
+            mToast.cancel();
+        }
         startActivity(intent);
     }
 
