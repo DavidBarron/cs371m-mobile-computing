@@ -12,8 +12,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="davidbar.foodwithfriends.SetLikesActivity"
-    tools:showIn="@layout/activity_set_likes"
-    android:background="#e6a84a">
+    tools:showIn="@layout/activity_set_likes">
 
 
     <!-- non-scrolling top pane -->

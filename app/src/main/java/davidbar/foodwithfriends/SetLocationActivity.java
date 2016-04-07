@@ -32,6 +32,8 @@ public class SetLocationActivity extends AppCompatActivity {
 
     private boolean locationSet = false;
 
+    private Toast mToast;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,6 +135,7 @@ public class SetLocationActivity extends AppCompatActivity {
     public void clickBackButton(View view) {
         Log.d(TAG, "CLICK!!");
         Intent intent = new Intent(this, SetLikesActivity.class);
+        mToast.cancel();
         startActivity(intent);
     }
 
@@ -141,8 +144,12 @@ public class SetLocationActivity extends AppCompatActivity {
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
 
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
+        if(mToast != null){
+            mToast.cancel();
+        }
+
+        mToast = Toast.makeText(context, text, duration);
+        mToast.show();
     }
 
     // Updates the Lat and Lon strings

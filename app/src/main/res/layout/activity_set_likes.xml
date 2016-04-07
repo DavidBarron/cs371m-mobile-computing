@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="#ff888888"
+    android:background="#e6a84a"
     tools:context="davidbar.foodwithfriends.SetLikesActivity">
 
     <android.support.design.widget.AppBarLayout
