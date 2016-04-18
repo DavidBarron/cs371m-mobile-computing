@@ -95,24 +95,6 @@ public class SetLikesActivity extends AppCompatActivity {
             button.setTextColor(Color.BLACK);
             likes.put(buttonText, 0);
         }
-
-//        switch(color){
-//            case Color.GREEN:
-//                button.setBackgroundColor(Color.RED);
-//                button.setTextColor(Color.WHITE);
-//                likes.put(buttonText, -1);
-//                break;
-//            case Color.RED:
-//                button.setBackgroundColor(Color.YELLOW);
-//                button.setTextColor(Color.BLACK);
-//                likes.put(buttonText, 0);
-//                break;
-//            default:
-//                button.setBackgroundColor(Color.GREEN);
-//                button.setTextColor(Color.WHITE);
-//                likes.put(buttonText, 1);
-//                break;
-//        }
     }
 
     /** Called when the user clicks the Next button */

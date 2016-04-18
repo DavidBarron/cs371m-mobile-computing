@@ -2,9 +2,12 @@ package davidbar.foodwithfriends;
 
 // David Barron
 // Animesh Gandhi
+// Ann Yu
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -44,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
 
     /** Called when the user clicks the Send button */
     public void clickFriendsButton(View view) {
-        // Do something in response to button
+        Log.d(TAG, "CLICK!!");
+        Intent intent = new Intent(this, ChooseFriendsActivity.class);
+        startActivity(intent);
     }
 
     @Override
