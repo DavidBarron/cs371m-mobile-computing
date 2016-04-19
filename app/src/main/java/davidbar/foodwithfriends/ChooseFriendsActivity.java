@@ -1,6 +1,8 @@
 package davidbar.foodwithfriends;
 
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
@@ -9,12 +11,33 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
 public class ChooseFriendsActivity extends AppCompatActivity {
 
     private static final String TAG = "ChooseFriendsActivity";
+
+    static final int color_green = Color.parseColor("#32CD32");
+    static final int color_grey = Color.parseColor("#a8a8a8");
+
+    private View.OnClickListener l = new View.OnClickListener(){
+        public void onClick(View view){
+
+            Button button = (Button) findViewById(view.getId());
+
+            // Get the color of the button
+            ColorDrawable drawable = (ColorDrawable)button.getBackground();
+            int color = drawable.getColor();
+
+            if (color == color_grey){
+                button.setBackgroundColor(color_green);
+            } else {
+                button.setBackgroundColor(color_grey);
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +56,10 @@ public class ChooseFriendsActivity extends AppCompatActivity {
         //});
         LinearLayout ll = (LinearLayout)findViewById(R.id.scroll_friends);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        lp.setMargins(10, 20, 30, 40);
+
         Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,null,null, null);
+        int idCount = 0;
         while (phones.moveToNext())
         {
             String name=phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
@@ -41,21 +67,23 @@ public class ChooseFriendsActivity extends AppCompatActivity {
 
             Button btn = new Button(this);
             btn.setText(name);
+            btn.setId(idCount++);
+            btn.setBackgroundColor(color_grey);
+            btn.setOnClickListener(l);
+            //setMargins(btn,15,15,15,15);
 
-            if(btn == null){
-                Log.d(TAG,"BUTTON NULL");
-            }
-            if(ll == null){
-                Log.d(TAG,"LAYOUT NULL");
-            }
-            if(lp == null){
-                Log.d(TAG,"LP NULL");
-            }
-
-            ll.addView(btn);
+            ll.addView(btn,lp);
 
             Log.d(TAG,name + " " + phoneNumber);
         }
         phones.close();
+    }
+
+    private void setMargins (View view, int left, int top, int right, int bottom) {
+        if (view.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+            p.setMargins(left, top, right, bottom);
+            view.requestLayout();
+        }
     }
 }
