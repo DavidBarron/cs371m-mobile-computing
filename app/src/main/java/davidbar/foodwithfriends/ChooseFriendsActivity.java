@@ -27,7 +27,7 @@ public class ChooseFriendsActivity extends AppCompatActivity {
     private HashMap<String, String> mContacts = new HashMap<String, String>();
 
     // Listener for buttons...
-    private View.OnClickListener l = new View.OnClickListener(){
+    private View.OnClickListener listener = new View.OnClickListener(){
         public void onClick(View view){
 
             Button button = (Button) findViewById(view.getId());
@@ -49,6 +49,14 @@ public class ChooseFriendsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_friends);
 
+        mContacts = ContactsMagic.formatContacts(getUserContacts());
+
+        addFriendButtons(mContacts);
+    }
+
+    // Cycles through all of the user's contacts for raw name, phone number data strings
+    private HashMap<String, String> getUserContacts(){
+        HashMap<String, String> contacts = new HashMap<String, String>();
         Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,null,null, null);
 
         while (phones.moveToNext())
@@ -56,13 +64,13 @@ public class ChooseFriendsActivity extends AppCompatActivity {
             String name=phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
             String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
 
-            mContacts.put(name, phoneNumber);
+            contacts.put(name, phoneNumber);
 
             Log.d(TAG,name + " " + phoneNumber);
         }
         phones.close();
 
-        addFriendButtons(mContacts);
+        return contacts;
     }
 
     // Creates buttons in ScrollView from input HashMap
@@ -80,7 +88,7 @@ public class ChooseFriendsActivity extends AppCompatActivity {
             button.setText(key);
             button.setId(idCount++);
             button.setBackgroundColor(color_grey);
-            button.setOnClickListener(l);
+            button.setOnClickListener(listener);
 
             ll.addView(button,lp);
         }
