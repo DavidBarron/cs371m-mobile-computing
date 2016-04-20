@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
         //                .setAction("Action", null).show();
         //    }
         //});
+
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
     }
 
     /** Called when the user clicks the Myself button */

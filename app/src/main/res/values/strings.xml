@@ -41,6 +41,8 @@
     <string name="wait">PLEASE WAIT...</string>
     <string name="title_activity_choose_friends">ChooseFriendsActivity</string>
     <string name="header_choose_friends">Choose Friends to Invite</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="header_register">Please Confirm Your Phone Number</string>
 
 
 </resources>

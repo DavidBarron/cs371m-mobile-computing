@@ -1,5 +1,8 @@
 package davidbar.foodwithfriends;
 
+import android.content.Context;
+import android.telephony.TelephonyManager;
+
 import java.util.HashMap;
 
 /**
@@ -44,6 +47,7 @@ public class ContactsMagic {
                     retVal += "-";
                 }
                 if(numLen == 10){
+                    retVal = reverseString(retVal);
                     break;
                 }
             }
@@ -60,6 +64,30 @@ public class ContactsMagic {
         }
 
         return retVal;
+    }
+
+    // Reverse a String
+    // Source: http://stackoverflow.com/questions/7569335/reverse-a-string-in-java
+    public static String reverseString(String source) {
+        int i, len = source.length();
+        StringBuilder dest = new StringBuilder(len);
+
+        for (i = (len - 1); i >= 0; i--){
+            dest.append(source.charAt(i));
+        }
+
+        return dest.toString();
+    }
+
+    // Try to get the device's phone number
+    // Varies by phone and carrier, doesn't always work
+    public static String getMyPhoneNumber(Context context){
+        try {
+            TelephonyManager tMgr = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+            return tMgr.getLine1Number();
+        } catch (Exception e){
+            return "PHONE_NUMBER_UNKNOWN";
+        }
     }
 
 }
