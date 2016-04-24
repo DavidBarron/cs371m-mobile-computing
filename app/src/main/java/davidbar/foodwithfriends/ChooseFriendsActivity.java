@@ -32,6 +32,12 @@ public class ChooseFriendsActivity extends AppCompatActivity {
     private HashMap<String, String> mContactsNametoNumber = new HashMap<String, String>();
     private HashMap<String, String> mContactsNumbertoName = new HashMap<String, String>();
 
+    // Friends found registered in database
+    private HashMap<String, String> mFoundFriends = new HashMap<String, String>();
+
+    // Friends currently selected by user
+    private HashMap<String, String> mSelectedFriends = new HashMap<String, String>();
+
     // id for Friend Buttons
     private int idCount = 0;
 
@@ -40,11 +46,9 @@ public class ChooseFriendsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_friends);
 
-        //mContactsNametoNumber = ContactsMagic.formatContacts(getUserContacts());
         mContactsNametoNumber = ContactsMagic.getContactsNameToNumber(this);
         mContactsNumbertoName = ContactsMagic.getContactsNumberToName(this);
 
-        //addFriendButtons(KumulosWrapper.getFriends(mContacts));
         showFriends(mContactsNametoNumber);
     }
 
@@ -59,8 +63,15 @@ public class ChooseFriendsActivity extends AppCompatActivity {
             int color = drawable.getColor();
 
             if (color == color_grey){
+                String name = (String)button.getText();
+                String num = mContactsNametoNumber.get(name);
+                String likes = mFoundFriends.get(num);
+                mSelectedFriends.put(num, likes);
                 button.setBackgroundColor(color_green);
             } else {
+                String name = (String)button.getText();
+                String num = mContactsNametoNumber.get(name);
+                mSelectedFriends.remove(num);
                 button.setBackgroundColor(color_grey);
             }
         }
@@ -118,7 +129,6 @@ public class ChooseFriendsActivity extends AppCompatActivity {
         button.setOnClickListener(listener);
 
         ll.addView(button,lp);
-
     }
 
     protected  void showFriends(HashMap<String, String> contacts){
@@ -145,11 +155,17 @@ public class ChooseFriendsActivity extends AppCompatActivity {
                         HashMap r = (HashMap)((ArrayList) result).get(0);
                         //Log.d(TAG, r.getClass().toString());
                         String num = (String)r.get("userNumber");
+                        String likes = (String)r.get("likes");
+                        mFoundFriends.put(num, likes);
                         addFriendButton(mContactsNumbertoName.get(num));
                     }
 
                 }
             });
         }
+    }
+
+    protected void clickNextButton(View view){
+        Log.d(TAG, mSelectedFriends.toString());
     }
 }
