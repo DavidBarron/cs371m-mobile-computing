@@ -168,4 +168,8 @@ public class ChooseFriendsActivity extends AppCompatActivity {
     protected void clickNextButton(View view){
         Log.d(TAG, mSelectedFriends.toString());
     }
+
+    protected void clickInviteButton(View view){
+        // do something
+    }
 }
