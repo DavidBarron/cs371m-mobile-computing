@@ -11,6 +11,10 @@ import java.util.Random;
  */
 public class CuisineMagic {
 
+    // Cuisines user currently can set
+    public static final String[] CUISINES = {"American", "Chinese", "Cuban", "Indian", "Italian",
+            "Japanese", "Korean", "Mexican", "Taiwanese", "Thai"};
+
     // Sort single user likes stored in map, like and neutral
     // Return two Lists in HashMap
     public static HashMap<String, List> sortSingleUserLikes(HashMap<String, Integer> map){
@@ -44,5 +48,17 @@ public class CuisineMagic {
         int randIndex = rand.nextInt(list.size());
 
         return (String) list.get(randIndex);
+    }
+
+    // Default String for storing in Database
+    public static String getDefaultLikes(){
+        String retVal = "";
+
+        for (String s : CUISINES){
+            retVal += s + ":0,";
+        }
+
+        // Clip off extra ',' at end
+        return retVal.substring(0,retVal.length()-1);
     }
 }

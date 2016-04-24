@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 
+
 public class RegisterActivity extends AppCompatActivity {
 
     private boolean phoneNumSet = false;
@@ -23,7 +24,6 @@ public class RegisterActivity extends AppCompatActivity {
             EditText et = (EditText) findViewById(R.id.myPhoneNumberEditText);
             et.setText(ContactsMagic.formatPhoneNumber(num));
         }
-
     }
 
     protected void registerUser(){
