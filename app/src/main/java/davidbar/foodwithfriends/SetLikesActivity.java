@@ -190,6 +190,14 @@ public class SetLikesActivity extends AppCompatActivity {
     public void clickNextButton(View view) {
         Log.d(TAG, "CLICK!!");
         Log.d(TAG, "FINAL MAP: " + mLikes.toString());
+
+        String num = ContactsMagic.getMyPhoneNumber(this);
+        String sLikes = CuisineMagic.convertLikesMapToString(mLikes);
+
+        if(num != null){
+            KumulosWrapper.updateUser(num,sLikes);
+        }
+
         Intent intent = new Intent(this, SetLocationActivity.class);
         intent.putExtra("likes", mLikes);
         startActivity(intent);
