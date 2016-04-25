@@ -52,7 +52,7 @@ public class ChooseFriendsActivity extends AppCompatActivity {
         showFriends(mContactsNametoNumber);
     }
 
-    // Listener for buttons...
+    // Listener for friend buttons...
     private View.OnClickListener listener = new View.OnClickListener(){
         public void onClick(View view){
 

@@ -151,6 +151,20 @@ public class ContactsMagic {
         }
     }
 
+    // Get the phone number that was used to register with database
+    public static String getRegisteredUser(Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        String phoneNumber = prefs.getString("fwf_phone_number",null);
+
+        if (phoneNumber != null){
+            Log.d(TAG, "Registered user found: " + phoneNumber);
+            return phoneNumber;
+        } else {
+            Log.d(TAG, "User not registered");
+            return null;
+        }
+    }
+
 //    protected static void registerUser(Context context, String num){
 //        HashMap<String,String> map = new HashMap<>();
 //        String defaultLikes = CuisineMagic.getDefaultLikes();

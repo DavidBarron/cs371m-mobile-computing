@@ -61,4 +61,31 @@ public class CuisineMagic {
         // Clip off extra ',' at end
         return retVal.substring(0,retVal.length()-1);
     }
+
+    //
+    public static HashMap<String, Integer> convertLikesStringToMap(String likes){
+
+        HashMap<String, Integer> retVal = new HashMap<>();
+
+        String[] pairs = likes.split(",");
+
+        for (String s : pairs){
+            String[] arr = s.split(":");
+            retVal.put(arr[0],Integer.valueOf(arr[1]));
+        }
+
+        return retVal;
+    }
+
+    //
+    public static String convertLikesMapToString(HashMap<String, Integer> likes){
+        String retVal = "";
+
+        for (String s : likes.keySet()){
+            int score = likes.get(s);
+            retVal += s + ":" + score + ",";
+        }
+
+        return retVal.substring(0,retVal.length()-1);
+    }
 }
