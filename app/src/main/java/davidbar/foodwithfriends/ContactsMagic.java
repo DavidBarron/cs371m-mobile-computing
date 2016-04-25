@@ -140,12 +140,13 @@ public class ContactsMagic {
     public static boolean checkRegisteredUser(Context context){
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        String phoneNumber = prefs.getString("fwf_phone_number",null);
 
-        try{
-            String phoneNumber = prefs.getString("fwf_phone_number","");
+        if (phoneNumber != null){
+            Log.d(TAG, "Registered user found: " + phoneNumber);
             return true;
-            //return false;
-        }catch (Exception e){
+        } else {
+            Log.d(TAG, "User not registered");
             return false;
         }
     }
