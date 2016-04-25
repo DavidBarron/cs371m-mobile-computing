@@ -83,7 +83,7 @@ public class SetLikesActivity extends AppCompatActivity {
                     Log.d(TAG, "mLikes set to: " + mLikes.toString());
                     for (String s : mLikes.keySet()){
                         Integer score = mLikes.get(s);
-                        addCuisineButton(s,score);
+                        addCuisineButton(s,intToColor(score));
                     }
                 }
 
@@ -174,6 +174,17 @@ public class SetLikesActivity extends AppCompatActivity {
             }
         }
     };
+
+    private static int intToColor(int in){
+
+        if( in == 1){
+            return color_green;
+        }else if ( in == -1){
+            return color_red;
+        }else{
+            return color_gold;
+        }
+    }
 
     /** Called when the user clicks the Next button */
     public void clickNextButton(View view) {
