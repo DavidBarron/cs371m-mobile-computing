@@ -41,7 +41,24 @@ public class KumulosWrapper {
         Log.d(TAG, "REGISTER USER DONE");
     }
 
-    //
+    // Call to update a user'd likes stored in database
+    // result Object should be Integer with number of records updated
+    protected static void updateUser(String num, String likes){
+
+        // input params
+        HashMap<String, String> params = new HashMap<>();
+        params.put("userNumber",num);
+        params.put("likes",likes);
+
+        Kumulos.call("updateUser", params, new ResponseHandler(){
+            @Override
+            public void didCompleteWithResult(Object result){
+                // Should do some error reporting later
+            }
+        });
+    }
+
+    // Can't be called here, asynchronous call
     protected static HashMap<String, String> getFriends(HashMap<String, String> contacts){
         HashMap<String, String> friends = new HashMap<>();
         HashMap<String, String> params = new HashMap<>();
