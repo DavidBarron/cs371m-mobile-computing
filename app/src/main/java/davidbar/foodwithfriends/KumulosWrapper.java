@@ -80,13 +80,11 @@ public class KumulosWrapper {
                         Log.d(TAG, result.getClass().toString());
                         Log.d(TAG, result.toString());
                     }
-
                 }
 
             });
 
         }
-
         Log.d(TAG, "RETURN FROM FIND FRIENDS");
         return friends;
     }

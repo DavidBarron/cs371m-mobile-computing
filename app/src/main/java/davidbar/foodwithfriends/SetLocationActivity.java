@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +26,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-public class SetLocationActivity extends AppCompatActivity {
+public class SetLocationActivity extends AppCompatActivity implements LocationListener {
 
     private static final String TAG = "SetLocation";
 
@@ -35,7 +37,7 @@ public class SetLocationActivity extends AppCompatActivity {
 
     private Toast mToast;
 
-    @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_location);
@@ -81,32 +83,37 @@ public class SetLocationActivity extends AppCompatActivity {
     public void clickGPSButton(View view) {
         Log.d(TAG, "CLICK!!");
 
-        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        String locationProvider = LocationManager.GPS_PROVIDER;
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//        LocationListener listener = new MyLocationListener();
         Location location = null;
 
-        // Check for API 23 or greater
+
+//        String locationProvider = LocationManager.GPS_PROVIDER;
+//        Location location = null;
+//
+//        // Check for API 23 or greater
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
 
             // If yes, we need to check for permissions
             if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                     || checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                location = locationManager.getLastKnownLocation(locationProvider);
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+                location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             }
             Log.d(TAG, "API 23 or greater");
         } else {
-            //locationManager.requestLocationUpdates(locationProvider, 0, 0, this);
-            location = locationManager.getLastKnownLocation(locationProvider);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+            location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             Log.d(TAG, "Lower than API 23");
         }
-
+//
         if (location != null) {
             latitude = location.getLatitude();
             longitude = location.getLongitude();
             locationSet = true;
             Log.d(TAG, "GPS successfully set location");
             showToast(getString(R.string.location_set));
-            updateLatLonText();
+            onLocationChanged(location);
         }else{
             showToast(getString(R.string.gps_inaccessible));
         }
@@ -132,13 +139,13 @@ public class SetLocationActivity extends AppCompatActivity {
         }
     }
 
-    /** Called when the user clicks the Next button */
+    /** Called when the user clicks the Back button */
     protected void clickBackButton(View view) {
         Log.d(TAG, "CLICK!!");
         Intent intent = new Intent(this, SetLikesActivity.class);
-        if(mToast != null) {
-            mToast.cancel();
-        }
+//        if(mToast != null) {
+//            mToast.cancel();
+//        }
         startActivity(intent);
     }
 
@@ -155,7 +162,7 @@ public class SetLocationActivity extends AppCompatActivity {
         mToast.show();
     }
 
-    // Updates the Lat and Lon strings
+    // Updates the Lat and Lon strings when address is entered only
     private void updateLatLonText(){
         TextView lat = (TextView) findViewById(R.id.lat);
         TextView lon = (TextView) findViewById(R.id.lon);
@@ -164,5 +171,32 @@ public class SetLocationActivity extends AppCompatActivity {
 
         lat.setText(String.format(str_lat, latitude));
         lon.setText(String.format(str_lon, longitude));
+    }
+
+    // Updates the Lat and Lon strings when used with GPS only
+    public void onLocationChanged(Location location) {
+        String str_lat = getString(R.string.string_lat);
+        String str_lon = getString(R.string.string_lon);
+
+        TextView lat = (TextView) findViewById(R.id.lat);
+        TextView lon = (TextView) findViewById(R.id.lon);
+
+        lat.setText(String.format(str_lat, location.getLatitude()));
+        lon.setText(String.format(str_lon, location.getLongitude()));
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+        Log.d("Latitude", "disable");
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+        Log.d("Latitude","enable");
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+        Log.d("Latitude","status");
     }
 }
