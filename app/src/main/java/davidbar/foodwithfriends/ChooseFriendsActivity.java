@@ -1,5 +1,6 @@
 package davidbar.foodwithfriends;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -167,6 +168,9 @@ public class ChooseFriendsActivity extends AppCompatActivity {
 
     protected void clickNextButton(View view){
         Log.d(TAG, mSelectedFriends.toString());
+        Intent intent = new Intent(this, SetLikesActivity.class);
+        //intent.putExtra();
+        startActivity(intent);
     }
 
     protected void clickInviteButton(View view){

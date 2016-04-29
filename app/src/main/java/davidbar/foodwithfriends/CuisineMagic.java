@@ -1,15 +1,20 @@
 package davidbar.foodwithfriends;
 
+import android.util.Log;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 /**
  * Created by David Barron on 4/2/2016.
  */
 public class CuisineMagic {
+
+    private static final String TAG = "CuisineMagic";
 
     // Cuisines user currently can set
     public static final String[] CUISINES = {"American", "Chinese", "Cuban", "Indian", "Italian",
@@ -40,6 +45,81 @@ public class CuisineMagic {
         retMap.put("neutral", neutral);
 
         return retMap;
+    }
+
+    // Sort multiple user likes stored in list of maps
+    // Return HashMap of added up scores
+    public static HashMap<String, Integer> addUserLikes(List<HashMap<String, Integer>> maps){
+
+        HashMap<String, Integer> retMap =  new HashMap<>();
+
+        // Iterate though each map
+        for (HashMap<String, Integer> map: maps){
+
+            // Iterate through each entry pair
+            for (HashMap.Entry<String, Integer> entry : map.entrySet()) {
+
+                String key = entry.getKey();
+                Integer value = entry.getValue();
+
+                // if K,V pair doesn't exist, add it. If it does, update it
+                if (!retMap.containsKey(key)){
+                    retMap.put(key, value);
+                } else {
+
+                    Integer tmpVal = retMap.get(key);
+                    tmpVal += value;
+
+                    // replace() method doesn't seems to exist...
+                    retMap.put(key, tmpVal);
+                }
+            }
+        }
+
+        Log.d(TAG,"MAP: " + retMap.toString());
+        return retMap;
+    }
+
+    // Untested
+    public static LinkedList<LinkedList<String>> binMap(HashMap<String,Integer> map){
+
+        HashMap<Integer, LinkedList<String>> tmpMap = new HashMap<>();
+        LinkedList<LinkedList<String>> retList = new LinkedList<>();
+
+        for (HashMap.Entry<String, Integer> entry : map.entrySet()) {
+
+            String cuisine = entry.getKey();
+            Integer score = entry.getValue();
+
+            if (!tmpMap.containsKey(score)){
+
+                LinkedList<String> list = new LinkedList<>();
+                list.add(cuisine);
+                tmpMap.put(score,list);
+
+            } else {
+
+                LinkedList<String> list = tmpMap.get(score);
+                list.add(cuisine);
+
+                // update the map...
+                tmpMap.put(score, list);
+
+            }
+        }
+
+        // more ugly code...
+
+        Integer[] arr = (Integer[])tmpMap.keySet().toArray();
+
+        Arrays.sort(arr);
+
+        for ( int i = arr.length-1; i >= 0; i--){
+            Integer key = arr[i];
+            retList.add(tmpMap.get(key));
+        }
+
+        return retList;
     }
 
     public static String chooseRandomCuisine(List list){
