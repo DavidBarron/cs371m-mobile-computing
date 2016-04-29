@@ -17,7 +17,9 @@ import android.view.MenuItem;
 import com.kumulos.android.jsonclient.Kumulos;
 import com.kumulos.android.jsonclient.ResponseHandler;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,7 +54,17 @@ public class MainActivity extends AppCompatActivity {
     /** Called when the user clicks the Myself button */
     public void clickMyselfButton(View view) {
         Log.d(TAG, "CLICK!!");
+
         Intent intent = new Intent(this, SetLikesActivity.class);
+
+        // Empty here only...
+        ArrayList<HashMap> friendLikes = new ArrayList<>();
+        HashMap<String, String> blankMap = new HashMap<>();
+
+        intent.putExtra("friendLikes", friendLikes);
+        intent.putExtra("selectedFriends", blankMap);
+        intent.putExtra("contacts", blankMap);
+
         startActivity(intent);
     }
 

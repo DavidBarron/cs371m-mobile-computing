@@ -21,6 +21,7 @@ import com.kumulos.android.jsonclient.ResponseHandler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Objects;
 
 public class ChooseFriendsActivity extends AppCompatActivity {
@@ -34,9 +35,11 @@ public class ChooseFriendsActivity extends AppCompatActivity {
     private HashMap<String, String> mContactsNumbertoName = new HashMap<String, String>();
 
     // Friends found registered in database
+    // Number to Likes
     private HashMap<String, String> mFoundFriends = new HashMap<String, String>();
 
     // Friends currently selected by user
+    // Number to Likes
     private HashMap<String, String> mSelectedFriends = new HashMap<String, String>();
 
     // id for Friend Buttons
@@ -78,45 +81,6 @@ public class ChooseFriendsActivity extends AppCompatActivity {
         }
     };
 
-//    // Cycles through all of the user's contacts for raw name, phone number data strings
-//    private HashMap<String, String> getUserContacts(){
-//        HashMap<String, String> contacts = new HashMap<String, String>();
-//        Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,null,null, null);
-//
-//        while (phones.moveToNext())
-//        {
-//            String name=phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-//            String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-//
-//            contacts.put(name, phoneNumber);
-//
-//            Log.d(TAG,name + " " + phoneNumber);
-//        }
-//        phones.close();
-//
-//        return contacts;
-//    }
-
-//    // Creates buttons in ScrollView from input HashMap
-//    // Keys are contact names, Values are phone numbers
-//    private void addFriendButtons(HashMap<String, String> map){
-//
-//        LinearLayout ll = (LinearLayout)findViewById(R.id.scroll_friends);
-//        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-//        lp.setMargins(15, 15, 15, 15);
-//        int idCount = 0;
-//
-//        for (String key : map.keySet()){
-//
-//            Button button = new Button(this);
-//            button.setText(key);
-//            button.setId(idCount++);
-//            button.setBackgroundColor(color_grey);
-//            button.setOnClickListener(listener);
-//
-//            ll.addView(button,lp);
-//        }
-//    }
 
     private void addFriendButton(String s){
 
@@ -132,6 +96,7 @@ public class ChooseFriendsActivity extends AppCompatActivity {
         ll.addView(button,lp);
     }
 
+    // contacts mapping is String name to String number
     protected  void showFriends(HashMap<String, String> contacts){
 
         HashMap<String, String> params = new HashMap<>();
@@ -169,7 +134,18 @@ public class ChooseFriendsActivity extends AppCompatActivity {
     protected void clickNextButton(View view){
         Log.d(TAG, mSelectedFriends.toString());
         Intent intent = new Intent(this, SetLikesActivity.class);
-        //intent.putExtra();
+
+        ArrayList<HashMap> friendLikes = new ArrayList<>();
+
+        for (HashMap.Entry<String, String> entry : mSelectedFriends.entrySet()) {
+            HashMap map = CuisineMagic.convertLikesStringToMap(entry.getValue());
+            friendLikes.add(map);
+        }
+
+        intent.putExtra("friendLikes", friendLikes);
+        intent.putExtra("selectedFriends", mSelectedFriends);
+        intent.putExtra("contacts", mContactsNumbertoName);
+
         startActivity(intent);
     }
 

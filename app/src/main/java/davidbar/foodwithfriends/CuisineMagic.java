@@ -49,7 +49,7 @@ public class CuisineMagic {
 
     // Sort multiple user likes stored in list of maps
     // Return HashMap of added up scores
-    public static HashMap<String, Integer> addUserLikes(List<HashMap<String, Integer>> maps){
+    public static HashMap<String, Integer> addUserLikes(ArrayList<HashMap<String, Integer>> maps){
 
         HashMap<String, Integer> retMap =  new HashMap<>();
 
@@ -81,10 +81,10 @@ public class CuisineMagic {
     }
 
     // Untested
-    public static LinkedList<LinkedList<String>> binMap(HashMap<String,Integer> map){
+    public static ArrayList<ArrayList<String>> binMap(HashMap<String,Integer> map){
 
-        HashMap<Integer, LinkedList<String>> tmpMap = new HashMap<>();
-        LinkedList<LinkedList<String>> retList = new LinkedList<>();
+        HashMap<Integer, ArrayList<String>> tmpMap = new HashMap<>();
+        ArrayList<ArrayList<String>> retList = new ArrayList<>();
 
         for (HashMap.Entry<String, Integer> entry : map.entrySet()) {
 
@@ -93,13 +93,13 @@ public class CuisineMagic {
 
             if (!tmpMap.containsKey(score)){
 
-                LinkedList<String> list = new LinkedList<>();
+                ArrayList<String> list = new ArrayList<>();
                 list.add(cuisine);
                 tmpMap.put(score,list);
 
             } else {
 
-                LinkedList<String> list = tmpMap.get(score);
+                ArrayList<String> list = tmpMap.get(score);
                 list.add(cuisine);
 
                 // update the map...

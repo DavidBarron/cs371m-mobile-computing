@@ -18,6 +18,7 @@ import com.kumulos.android.jsonclient.ResponseHandler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 
 public class SetLikesActivity extends AppCompatActivity {
@@ -35,6 +36,13 @@ public class SetLikesActivity extends AppCompatActivity {
     // Used to store user scores
     private HashMap<String, Integer> mLikes = new HashMap<>();
 
+    private HashMap<String, String> mContactsNumbertoName;
+
+    // Number to Likes map
+    private HashMap<String, String> mSelectedFriends;
+
+    private ArrayList<HashMap> mFriendLikes;
+
     // ID for cuisine buttons
     private int idCount = 0;
 
@@ -42,6 +50,12 @@ public class SetLikesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_likes);
+
+        // Populate Extras
+        Intent intent = getIntent();
+        mContactsNumbertoName = (HashMap<String, String>) intent.getSerializableExtra("contacts");
+        mSelectedFriends = (HashMap<String, String>) intent.getSerializableExtra("selectedFriends");
+        mFriendLikes = (ArrayList) intent.getSerializableExtra("friendLikes");
 
         //likes = initLikes();
         showLikes();
