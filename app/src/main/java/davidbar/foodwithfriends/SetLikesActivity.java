@@ -115,6 +115,19 @@ public class SetLikesActivity extends AppCompatActivity {
         button.setId(idCount++);
         button.setBackgroundColor(color);
         button.setOnClickListener(listener);
+        button.setHeight(70);
+
+        if (color == color_green) {
+            button.setTextColor(Color.WHITE);
+            button.setCompoundDrawablesWithIntrinsicBounds(R.drawable.very_satisfied_white, 0, 0, 0);
+        }else if (color == color_red){
+            button.setTextColor(Color.WHITE);
+            button.setCompoundDrawablesWithIntrinsicBounds(R.drawable.very_dissatisfied_white, 0, 0, 0);
+        }else{
+            button.setTextColor(Color.BLACK);
+            button.setCompoundDrawablesWithIntrinsicBounds(R.drawable.satisfied_black, 0, 0, 0);
+        }
+        button.setPadding(50,0,0,0);
 
         ll.addView(button,lp);
     }
@@ -176,14 +189,17 @@ public class SetLikesActivity extends AppCompatActivity {
             if (color == color_gold) {
                 button.setBackgroundColor(color_green);
                 button.setTextColor(Color.WHITE);
+                button.setCompoundDrawablesWithIntrinsicBounds(R.drawable.very_satisfied_white, 0, 0, 0);
                 mLikes.put(buttonText, 1);
             } else if (color == color_green) {
                 button.setBackgroundColor(color_red);
                 button.setTextColor(Color.WHITE);
+                button.setCompoundDrawablesWithIntrinsicBounds(R.drawable.very_dissatisfied_white, 0, 0, 0);
                 mLikes.put(buttonText, -1);
             } else if (color == color_red) {
                 button.setBackgroundColor(color_gold);
                 button.setTextColor(Color.BLACK);
+                button.setCompoundDrawablesWithIntrinsicBounds(R.drawable.satisfied_black, 0, 0, 0);
                 mLikes.put(buttonText, 0);
             }
         }

@@ -72,11 +72,13 @@ public class ChooseFriendsActivity extends AppCompatActivity {
                 String likes = mFoundFriends.get(num);
                 mSelectedFriends.put(num, likes);
                 button.setBackgroundColor(color_green);
+                button.setCompoundDrawablesWithIntrinsicBounds( R.drawable.check_box_white, 0, 0, 0);
             } else {
                 String name = (String)button.getText();
                 String num = mContactsNametoNumber.get(name);
                 mSelectedFriends.remove(num);
                 button.setBackgroundColor(color_grey);
+                button.setCompoundDrawablesWithIntrinsicBounds( R.drawable.check_box_outline_blank_white, 0, 0, 0);
             }
         }
     };
@@ -91,7 +93,9 @@ public class ChooseFriendsActivity extends AppCompatActivity {
         button.setText(s);
         button.setId(idCount++);
         button.setBackgroundColor(color_grey);
+        button.setCompoundDrawablesWithIntrinsicBounds( R.drawable.check_box_outline_blank_white, 0, 0, 0);
         button.setOnClickListener(listener);
+        button.setPadding(50,0,0,0);
 
         ll.addView(button,lp);
     }
