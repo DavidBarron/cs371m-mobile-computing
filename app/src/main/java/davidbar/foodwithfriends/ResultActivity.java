@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.TextView;
 
@@ -37,5 +38,10 @@ public class ResultActivity extends AppCompatActivity {
         nameText.setText((String)thisIntent.getSerializableExtra("name"));
         addressText.setText((String)thisIntent.getSerializableExtra("address"));
         phoneText.setText((String)thisIntent.getSerializableExtra("phone"));
+    }
+
+    protected void sendMessage(View view){
+        SmsManager smsManager = SmsManager.getDefault();
+        smsManager.sendTextMessage("817-269-5908", null, "Wooooooooo", null, null);
     }
 }

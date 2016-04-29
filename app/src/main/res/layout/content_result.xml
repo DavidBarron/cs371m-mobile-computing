@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,10 +14,6 @@
     android:background="#e6a84a"
     android:orientation="vertical">
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="20dp"/>
-
     <TextView
         android:id="@+id/result_activity_header"
         android:layout_width="fill_parent"
@@ -25,29 +21,35 @@
         android:gravity="center"
         android:textColor="#000000"
         android:text="@string/header_result"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <Space
+        android:id="@+id/space_1"
         android:layout_width="match_parent"
+        android:layout_below="@+id/result_activity_header"
         android:layout_height="20dp"/>
 
     <TextView
         android:id="@+id/result_name_text"
+        android:layout_below="@+id/space_1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textColor="#000000"
         android:text="@string/str_name"
         android:textStyle="bold"
-        android:textSize="20dp" />
+        android:textSize="20sp" />
 
     <Space
+        android:id="@+id/space_2"
+        android:layout_below="@+id/result_name_text"
         android:layout_width="match_parent"
         android:layout_height="20dp"/>
 
     <TextView
         android:id="@+id/result_name_blank"
+        android:layout_below="@+id/space_2"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -55,11 +57,14 @@
         android:text="@string/str_result_error" />
 
     <Space
+        android:id="@+id/space_3"
+        android:layout_below="@+id/result_name_blank"
         android:layout_width="match_parent"
         android:layout_height="20dp"/>
 
     <TextView
         android:id="@+id/result_address_text"
+        android:layout_below="@+id/space_3"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -69,11 +74,14 @@
         android:textSize="20dp" />
 
     <Space
+        android:id="@+id/space_4"
+        android:layout_below="@+id/result_address_text"
         android:layout_width="match_parent"
         android:layout_height="20dp"/>
 
     <TextView
         android:id="@+id/result_address_blank"
+        android:layout_below="@+id/space_4"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -83,11 +91,14 @@
         android:text="@string/str_result_error" />
 
     <Space
+        android:id="@+id/space_5"
+        android:layout_below="@+id/result_address_blank"
         android:layout_width="match_parent"
         android:layout_height="20dp"/>
 
     <TextView
         android:id="@+id/result_phone_text"
+        android:layout_below="@+id/space_5"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -97,11 +108,14 @@
         android:textSize="20dp" />
 
     <Space
+        android:id="@+id/space_6"
+        android:layout_below="@+id/result_phone_text"
         android:layout_width="match_parent"
         android:layout_height="20dp"/>
 
     <TextView
         android:id="@+id/result_phone_blank"
+        android:layout_below="@+id/space_6"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -110,4 +124,18 @@
         android:linksClickable="true"
         android:text="@string/str_result_error" />
 
-</LinearLayout>
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#20B2AA"
+        android:textColor="#ffffff"
+        android:drawableStart="@drawable/send_white"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:text="Send Message"
+        android:id="@+id/send_message"
+        android:onClick="sendMessage"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
