@@ -110,12 +110,12 @@ public class CuisineMagic {
 
         // more ugly code...
 
-        Integer[] arr = (Integer[])tmpMap.keySet().toArray();
+        Object[] arr = tmpMap.keySet().toArray();
 
         Arrays.sort(arr);
 
         for ( int i = arr.length-1; i >= 0; i--){
-            Integer key = arr[i];
+            Integer key = (Integer)arr[i];
             retList.add(tmpMap.get(key));
         }
 

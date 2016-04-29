@@ -29,6 +29,7 @@ package davidbar.foodwithfriends;
 //
 //}
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,36 +62,54 @@ public class ScoreAPIActivity extends AppCompatActivity {
 
     private static final String TAG = "ScoreAPIActivity";
 
+    private HashMap<String, String> mContactsNumbertoName;
+
+    // Number to Likes map
+    private HashMap<String, String> mSelectedFriends;
+
+    private ArrayList<HashMap<String, Integer>> mFriendLikes;
+
     @Override
+    @SuppressWarnings("unchecked")
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_api);
         FactualRetrievalTask task = new FactualRetrievalTask();
-        Intent thisIntent = getIntent();
+        //Intent thisIntent = getIntent();
+
+        // Populate Extras
+        Intent intent = getIntent();
+        mContactsNumbertoName = (HashMap<String, String>) intent.getSerializableExtra("contacts");
+        mSelectedFriends = (HashMap<String, String>) intent.getSerializableExtra("selectedFriends");
+        mFriendLikes = (ArrayList) intent.getSerializableExtra("friendLikes");
+        double latitude = (Double)intent.getSerializableExtra("latitude");
+        double longitude = (Double)intent.getSerializableExtra("longitude");
+        int meters = 5000;      // hardcode location to 5 km
 
         // UGLY CODE BELOW!!! :(
 
-        HashMap<String, Integer> map = (HashMap) thisIntent.getSerializableExtra("likes");
+        //HashMap<String, Integer> map = (HashMap) thisIntent.getSerializableExtra("likes");
 
-        HashMap<String, List> likes = CuisineMagic.sortSingleUserLikes(map);
+        //HashMap<String, List> likes = CuisineMagic.sortSingleUserLikes(map);
 
-        double latitude = (Double)thisIntent.getSerializableExtra("latitude");
-        double longitude = (Double)thisIntent.getSerializableExtra("longitude");
-        int meters = 5000;      // hardcode location to 5 km
+        ArrayList<ArrayList<String>> queryList = CuisineMagic.binMap(CuisineMagic.addUserLikes(mFriendLikes));
+        ArrayList<String> topList = queryList.get(0);
 
-        List queryList = likes.get("like");
-        if(queryList.size() == 0){
-            queryList = likes.get("neutral");
-        }
 
-        String cuisine;
 
-        if(queryList.size() != 0) {
-            cuisine = CuisineMagic.chooseRandomCuisine(queryList);
-        } else{
-            cuisine = "Italian";
-        }
+        //List queryList = likes.get("like");
+        //if(queryList.size() == 0){
+        //    queryList = likes.get("neutral");
+        //}
+
+        String cuisine = CuisineMagic.chooseRandomCuisine(topList);
+
+        //if(queryList.size() != 0) {
+        //    cuisine = CuisineMagic.chooseRandomCuisine(queryList);
+        //} else{
+        //    cuisine = "Italian";
+        //}
 
         Log.d(TAG, "LAT: " + latitude);
         Log.d(TAG, "LON: " + longitude);

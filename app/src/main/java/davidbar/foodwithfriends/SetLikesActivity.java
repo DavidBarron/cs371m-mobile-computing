@@ -18,7 +18,6 @@ import com.kumulos.android.jsonclient.ResponseHandler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 
 
 public class SetLikesActivity extends AppCompatActivity {
@@ -26,8 +25,8 @@ public class SetLikesActivity extends AppCompatActivity {
     private static final String TAG = "SetLikesDislikes";
 
     // Cuisines user currently can set
-    private static final String[] CUISINES = {"American", "Chinese", "Cuban", "Indian", "Italian",
-                                              "Japanese", "Korean", "Mexican", "Taiwanese", "Thai"};
+    //private static final String[] CUISINES = {"American", "Chinese", "Cuban", "Indian", "Italian",
+    //                                          "Japanese", "Korean", "Mexican", "Taiwanese", "Thai"};
 
     static final int color_gold = Color.parseColor("#FFD700");
     static final int color_green = Color.parseColor("#32CD32");
@@ -47,6 +46,7 @@ public class SetLikesActivity extends AppCompatActivity {
     private int idCount = 0;
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_likes);
@@ -208,12 +208,21 @@ public class SetLikesActivity extends AppCompatActivity {
         String num = ContactsMagic.getMyPhoneNumber(this);
         String sLikes = CuisineMagic.convertLikesMapToString(mLikes);
 
+        // Save user likes to database
         if(num != null){
             KumulosWrapper.updateUser(num,sLikes);
         }
 
+        // Add user likes ot be included in calculations
+        mFriendLikes.add(mLikes);
+
         Intent intent = new Intent(this, SetLocationActivity.class);
-        intent.putExtra("likes", mLikes);
+
+        intent.putExtra("friendLikes", mFriendLikes);
+        intent.putExtra("selectedFriends", mSelectedFriends);
+        intent.putExtra("contacts", mContactsNumbertoName);
+
+        //intent.putExtra("likes", mLikes);
         startActivity(intent);
     }
 }

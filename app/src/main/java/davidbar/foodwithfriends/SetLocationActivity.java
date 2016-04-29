@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -33,24 +34,26 @@ public class SetLocationActivity extends AppCompatActivity {
 
     private boolean locationSet = false;
 
+    private HashMap<String, String> mContactsNumbertoName;
+
+    // Number to Likes map
+    private HashMap<String, String> mSelectedFriends;
+
+    private ArrayList<HashMap> mFriendLikes;
+
     private Toast mToast;
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_location);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
 
-        //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        //fab.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-        //    public void onClick(View view) {
-        //        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-        //                .setAction("Action", null).show();
-        //    }
-        //});
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // Populate Extras
+        Intent intent = getIntent();
+        mContactsNumbertoName = (HashMap<String, String>) intent.getSerializableExtra("contacts");
+        mSelectedFriends = (HashMap<String, String>) intent.getSerializableExtra("selectedFriends");
+        mFriendLikes = (ArrayList) intent.getSerializableExtra("friendLikes");
     }
 
     /** Called when the user clicks the Submit button */
@@ -119,13 +122,18 @@ public class SetLocationActivity extends AppCompatActivity {
         if(locationSet) {
 
             Intent intent = new Intent(this, ScoreAPIActivity.class);
-            Intent i = getIntent();
+            //Intent i = getIntent();
 
-            HashMap<String, Integer> map = (HashMap) i.getSerializableExtra("likes");
-            Log.d(TAG, "MAP in SetLocation is: " + map.toString());
+            //HashMap<String, Integer> map = (HashMap) i.getSerializableExtra("likes");
+            //Log.d(TAG, "MAP in SetLocation is: " + map.toString());
             intent.putExtra("latitude", latitude);
             intent.putExtra("longitude", longitude);
-            intent.putExtra("likes", map);
+            //intent.putExtra("likes", map);
+
+            intent.putExtra("friendLikes", mFriendLikes);
+            intent.putExtra("selectedFriends", mSelectedFriends);
+            intent.putExtra("contacts", mContactsNumbertoName);
+
             startActivity(intent);
         } else {
             showToast(getString(R.string.location_not_set));
@@ -139,7 +147,7 @@ public class SetLocationActivity extends AppCompatActivity {
         if(mToast != null) {
             mToast.cancel();
         }
-        startActivity(intent);
+        //startActivity(intent);
     }
 
     // Display toast with input text
