@@ -141,7 +141,7 @@ public class SetLocationActivity extends AppCompatActivity {
     }
 
     /** Called when the user clicks the Next button */
-    protected void clickBackButton(View view) {
+    public void clickBackButton(View view) {
         Log.d(TAG, "CLICK!!");
         Intent intent = new Intent(this, SetLikesActivity.class);
         if(mToast != null) {

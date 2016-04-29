@@ -1,0 +1,44 @@
+{
+  "project_info": {
+    "project_number": "573936037836",
+    "project_id": "food-with-friends-86c78"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:573936037836:android:19b347a7ed77f351",
+        "android_client_info": {
+          "package_name": "davidbar.foodwithfriends"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "573936037836-hm0j5acvtnoegafn5ut951bb0mt523rs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "davidbar.foodwithfriends",
+            "certificate_hash": "01B491BDCF97F5EC087027F978F3376E94D0F350"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXqHZVKWfH0bhLs9kNXwUoswB5bfaxC48"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

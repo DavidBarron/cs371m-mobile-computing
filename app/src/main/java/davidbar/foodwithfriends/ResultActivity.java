@@ -40,7 +40,7 @@ public class ResultActivity extends AppCompatActivity {
         phoneText.setText((String)thisIntent.getSerializableExtra("phone"));
     }
 
-    protected void sendMessage(View view){
+    public void sendMessage(View view){
         SmsManager smsManager = SmsManager.getDefault();
         smsManager.sendTextMessage("817-269-5908", null, "Wooooooooo", null, null);
     }
