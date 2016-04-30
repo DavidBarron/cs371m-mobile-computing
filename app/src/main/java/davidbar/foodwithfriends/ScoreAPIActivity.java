@@ -42,6 +42,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.factual.driver.Circle;
@@ -69,12 +71,17 @@ public class ScoreAPIActivity extends AppCompatActivity {
 
     private ArrayList<HashMap<String, Integer>> mFriendLikes;
 
+    private ProgressBar mSpinner;
+
     @Override
     @SuppressWarnings("unchecked")
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_api);
+
+        mSpinner = (ProgressBar)findViewById(R.id.progressBar1);
+
         FactualRetrievalTask task = new FactualRetrievalTask();
         //Intent thisIntent = getIntent();
 
@@ -160,6 +167,8 @@ public class ScoreAPIActivity extends AppCompatActivity {
                     + (String)restaurant.get("region") + ", "
                     + (String)restaurant.get("postcode"));
             intent.putExtra("phone", (String) restaurant.get("tel"));
+
+            //mSpinner.setVisibility(View.GONE);
 
             startActivity(intent);
         }

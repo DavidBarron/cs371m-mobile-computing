@@ -17,6 +17,4 @@
 
     <include layout="@layout/content_score_api" />
 
-
-
 </android.support.design.widget.CoordinatorLayout>
