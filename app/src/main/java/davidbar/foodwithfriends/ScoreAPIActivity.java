@@ -97,6 +97,13 @@ public class ScoreAPIActivity extends AppCompatActivity {
         task.execute(query);
     }
 
+    // Avoid hanging activity after pressing back from ResultActivity
+    @Override
+    public void onResume(){
+        super.onResume();
+        finish();
+    }
+
     protected class FactualRetrievalTask extends AsyncTask<Query, Integer, List<ReadResponse>> {
         @Override
         protected List<ReadResponse> doInBackground(Query... params) {
