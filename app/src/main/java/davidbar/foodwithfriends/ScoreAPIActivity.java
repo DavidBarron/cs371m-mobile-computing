@@ -142,7 +142,13 @@ public class ScoreAPIActivity extends AppCompatActivity {
                     + (String)restaurant.get("postcode"));
             intent.putExtra("phone", (String) restaurant.get("tel"));
 
-            //mSpinner.setVisibility(View.GONE);
+            ArrayList<String> friends = new ArrayList<>();
+
+            for (String s : mSelectedFriends.keySet()){
+                friends.add(s);
+            }
+
+            intent.putExtra("friends",friends);
 
             startActivity(intent);
         }
