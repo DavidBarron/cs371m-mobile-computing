@@ -143,11 +143,12 @@ public class SetLocationActivity extends AppCompatActivity {
     /** Called when the user clicks the Next button */
     public void clickBackButton(View view) {
         Log.d(TAG, "CLICK!!");
-        Intent intent = new Intent(this, SetLikesActivity.class);
+        //Intent intent = new Intent(this, SetLikesActivity.class);
         if(mToast != null) {
             mToast.cancel();
         }
         //startActivity(intent);
+        finish();
     }
 
     // Display toast with input text

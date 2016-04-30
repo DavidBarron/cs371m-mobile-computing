@@ -1,50 +1,16 @@
 package davidbar.foodwithfriends;
 
-//import android.os.Bundle;
-//import android.support.design.widget.FloatingActionButton;
-//import android.support.design.widget.Snackbar;
-//import android.support.v7.app.AppCompatActivity;
-//import android.support.v7.widget.Toolbar;
-//import android.view.View;
-//
-//public class ScoreAPIActivity extends AppCompatActivity {
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_score_api);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//    }
-//
-//}
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.content.Context;
 import android.content.Intent;
-import android.location.Location;
-import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.factual.driver.Circle;
 import com.factual.driver.Factual;
@@ -90,6 +56,7 @@ public class ScoreAPIActivity extends AppCompatActivity {
         mContactsNumbertoName = (HashMap<String, String>) intent.getSerializableExtra("contacts");
         mSelectedFriends = (HashMap<String, String>) intent.getSerializableExtra("selectedFriends");
         mFriendLikes = (ArrayList) intent.getSerializableExtra("friendLikes");
+
         double latitude = (Double)intent.getSerializableExtra("latitude");
         double longitude = (Double)intent.getSerializableExtra("longitude");
         int meters = 5000;      // hardcode location to 5 km
