@@ -241,4 +241,17 @@ public class SetLikesActivity extends AppCompatActivity {
         //intent.putExtra("likes", mLikes);
         startActivity(intent);
     }
+
+    public void clickBackButton(View view){
+
+        String num = ContactsMagic.getMyPhoneNumber(this);
+        String sLikes = CuisineMagic.convertLikesMapToString(mLikes);
+
+        // Save user likes to database
+        if(num != null){
+            KumulosWrapper.updateUser(num,sLikes);
+        }
+
+        finish();
+    }
 }

@@ -68,9 +68,23 @@
             android:background="#ff2000"
             android:textColor="#ffffff"
             android:layout_margin="10dp"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:onClick="clickNextButton"
+            />
+
+        <Button
+            android:id="@+id/backButton"
+            android:text="@string/back"
+            android:textStyle="bold"
+            android:background="#ff2000"
+            android:textColor="#ffffff"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:onClick="clickBackButton"
             />
 
     </RelativeLayout>
