@@ -31,6 +31,7 @@ public class SetLocationActivity extends AppCompatActivity {
 
     private double latitude = 34.06018;
     private double longitude = -118.41835;
+    private String locationStr = "";
 
     private boolean locationSet = false;
 
@@ -54,6 +55,21 @@ public class SetLocationActivity extends AppCompatActivity {
         mContactsNumbertoName = (HashMap<String, String>) intent.getSerializableExtra("contacts");
         mSelectedFriends = (HashMap<String, String>) intent.getSerializableExtra("selectedFriends");
         mFriendLikes = (ArrayList) intent.getSerializableExtra("friendLikes");
+
+        double[] latLon = getLatLon();
+
+        if(latLon != null){
+            latitude = latLon[0];
+            longitude = latLon[1];
+            locationSet = true;
+        }
+
+        String addressStr = getAddress(latitude, longitude);
+
+        if(addressStr != null){
+            locationStr = addressStr;
+            updateAddressText();
+        }
     }
 
     /** Called when the user clicks the Submit button */
@@ -72,7 +88,14 @@ public class SetLocationActivity extends AppCompatActivity {
             longitude = location.getLongitude();
             locationSet = true;
             showToast(getString(R.string.location_set));
-            updateLatLonText();
+            String str = getAddress(latitude,longitude);
+
+            if(str != null){
+                locationStr = str;
+                updateAddressText();
+            }
+
+            //updateLatLonText();
 
         } catch (Exception ex) {
             showToast(getString(R.string.address_error));
@@ -109,7 +132,7 @@ public class SetLocationActivity extends AppCompatActivity {
             locationSet = true;
             Log.d(TAG, "GPS successfully set location");
             showToast(getString(R.string.location_set));
-            updateLatLonText();
+            //updateLatLonText();
         }else{
             showToast(getString(R.string.gps_inaccessible));
         }
@@ -143,11 +166,10 @@ public class SetLocationActivity extends AppCompatActivity {
     /** Called when the user clicks the Next button */
     public void clickBackButton(View view) {
         Log.d(TAG, "CLICK!!");
-        //Intent intent = new Intent(this, SetLikesActivity.class);
         if(mToast != null) {
             mToast.cancel();
         }
-        //startActivity(intent);
+
         finish();
     }
 
@@ -164,14 +186,67 @@ public class SetLocationActivity extends AppCompatActivity {
         mToast.show();
     }
 
-    // Updates the Lat and Lon strings
-    private void updateLatLonText(){
-        TextView lat = (TextView) findViewById(R.id.lat);
-        TextView lon = (TextView) findViewById(R.id.lon);
-        String str_lat = getString(R.string.string_lat);
-        String str_lon = getString(R.string.string_lon);
+    // May return null
+    private double[] getLatLon(){
 
-        lat.setText(String.format(str_lat, latitude));
-        lon.setText(String.format(str_lon, longitude));
+        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        String locationProvider = LocationManager.GPS_PROVIDER;
+        Location location = null;
+
+        // Check for API 23 or greater
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+
+            // If yes, we need to check for permissions
+            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                    || checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                location = locationManager.getLastKnownLocation(locationProvider);
+            }
+            Log.d(TAG, "API 23 or greater");
+        } else {
+            //locationManager.requestLocationUpdates(locationProvider, 0, 0, this);
+            location = locationManager.getLastKnownLocation(locationProvider);
+            Log.d(TAG, "Lower than API 23");
+        }
+
+        if (location != null) {
+            double lat = location.getLatitude();
+            double lon = location.getLongitude();
+            Log.d(TAG, "GPS successfully set location");
+            double[] retVal = {lat, lon};
+
+            return retVal;
+        }else{
+            return null;
+        }
+    }
+
+    // may return null
+    private String getAddress(double lat, double lon){
+
+        Geocoder coder = new Geocoder(this, Locale.getDefault());
+        List<Address> addresses;
+
+        try {
+            addresses = coder.getFromLocation(lat,lon,1);
+            String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+            String city = addresses.get(0).getLocality();
+            String state = addresses.get(0).getAdminArea();
+            String country = addresses.get(0).getCountryName();
+            String postalCode = addresses.get(0).getPostalCode();
+            //showToast(getString(R.string.location_set));
+            return address + "\n" + city + " " + state + ", " + postalCode;
+
+        } catch (Exception ex) {
+            //showToast(getString(R.string.address_error));
+            return null;
+        }
+
+    }
+
+    // Updates the address String
+    private void updateAddressText(){
+
+        TextView current_address = (TextView) findViewById(R.id.current_location_str);
+        current_address.setText(locationStr);
     }
 }
