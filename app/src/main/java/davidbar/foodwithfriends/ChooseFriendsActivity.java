@@ -135,7 +135,11 @@ public class ChooseFriendsActivity extends AppCompatActivity {
         }
     }
 
-    protected void clickNextButton(View view){
+    public void clickInviteButton(View view){
+        // do something
+    }
+
+    public void clickNextButton(View view){
         Log.d(TAG, mSelectedFriends.toString());
         Intent intent = new Intent(this, SetLikesActivity.class);
 
@@ -153,7 +157,8 @@ public class ChooseFriendsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    protected void clickInviteButton(View view){
-        // do something
+    public void clickBackButton(View view){
+        finish();
     }
+
 }

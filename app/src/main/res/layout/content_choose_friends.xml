@@ -61,17 +61,18 @@
         android:gravity="center"
         >
 
-        <Button
-            android:id="@+id/nextButton"
-            android:text="@string/next"
-            android:textStyle="bold"
-            android:background="#ff2000"
-            android:textColor="#ffffff"
-            android:layout_margin="10dp"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/moreFriendsText"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:onClick="clickNextButton"
-            />
+            android:gravity="center_horizontal"
+            android:textColor="#000000"
+            android:text="@string/more_friends"
+            android:textStyle="normal|bold"
+            android:textSize="16sp"
+            android:layout_toEndOf="@+id/backButton"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/inviteButton" />
 
         <Button
             android:id="@+id/inviteButton"
@@ -82,8 +83,36 @@
             android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/nextButton"
+            android:layout_below="@+id/moreFriendsText"
+            android:onClick="clickInviteButton"
+            />
+
+        <Button
+            android:id="@+id/nextButton"
+            android:text="@string/next"
+            android:textStyle="bold"
+            android:background="#ff2000"
+            android:textColor="#ffffff"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/inviteButton"
             android:onClick="clickNextButton"
+            />
+
+        <Button
+            android:id="@+id/backButton"
+            android:text="@string/back"
+            android:textStyle="bold"
+            android:background="#ff2000"
+            android:textColor="#ffffff"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/inviteButton"
+            android:onClick="clickBackButton"
             />
 
     </RelativeLayout>
