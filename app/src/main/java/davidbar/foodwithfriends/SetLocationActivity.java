@@ -1,6 +1,7 @@
 package davidbar.foodwithfriends;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -16,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,8 +31,8 @@ public class SetLocationActivity extends AppCompatActivity {
 
     private static final String TAG = "SetLocation";
 
-    private double latitude = 34.06018;
-    private double longitude = -118.41835;
+    private double latitude = 30.2849185;
+    private double longitude = -97.7340567;
     private String locationStr = "";
 
     private boolean locationSet = false;
@@ -50,6 +52,17 @@ public class SetLocationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_location);
 
+        EditText editText = (EditText) findViewById(R.id.addressText);
+
+        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    hideKeyboard(v);
+                }
+            }
+        });
+
         // Populate Extras
         Intent intent = getIntent();
         mContactsNumbertoName = (HashMap<String, String>) intent.getSerializableExtra("contacts");
@@ -61,8 +74,10 @@ public class SetLocationActivity extends AppCompatActivity {
         if(latLon != null){
             latitude = latLon[0];
             longitude = latLon[1];
-            locationSet = true;
         }
+
+        // Hack for now
+        locationSet = true;
 
         String addressStr = getAddress(latitude, longitude);
 
@@ -226,15 +241,35 @@ public class SetLocationActivity extends AppCompatActivity {
         Geocoder coder = new Geocoder(this, Locale.getDefault());
         List<Address> addresses;
 
+        String retStr = "";
+
         try {
             addresses = coder.getFromLocation(lat,lon,1);
             String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
             String city = addresses.get(0).getLocality();
             String state = addresses.get(0).getAdminArea();
-            String country = addresses.get(0).getCountryName();
+            //String country = addresses.get(0).getCountryName();
             String postalCode = addresses.get(0).getPostalCode();
+            String knownName = addresses.get(0).getFeatureName();
             //showToast(getString(R.string.location_set));
-            return address + "\n" + city + " " + state + ", " + postalCode;
+
+            //if(knownName != null){
+            //    retStr += knownName + "\n";
+            //}
+            if(address != null){
+                retStr += address + "\n";
+            }
+            if(city != null){
+                retStr += city + " ";
+            }
+            if(state != null){
+                retStr += state + " ";
+            }
+            if(postalCode != null){
+                retStr += postalCode;
+            }
+
+            return retStr;
 
         } catch (Exception ex) {
             //showToast(getString(R.string.address_error));
@@ -248,5 +283,10 @@ public class SetLocationActivity extends AppCompatActivity {
 
         TextView current_address = (TextView) findViewById(R.id.current_location_str);
         current_address.setText(locationStr);
+    }
+
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }
