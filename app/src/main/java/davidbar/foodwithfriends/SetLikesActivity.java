@@ -95,7 +95,7 @@ public class SetLikesActivity extends AppCompatActivity {
                     String likes = (String)r.get("likes");
                     mLikes = CuisineMagic.convertLikesStringToMap(likes);
                     Log.d(TAG, "mLikes set to: " + mLikes.toString());
-                    for (String s : mLikes.keySet()){
+                    for (String s : CuisineMagic.CUISINES){
                         Integer score = mLikes.get(s);
                         addCuisineButton(s,intToColor(score));
                     }
@@ -131,41 +131,6 @@ public class SetLikesActivity extends AppCompatActivity {
 
         ll.addView(button,lp);
     }
-
-//    // Called when user clicks one of the cuisines to set like or dislike
-//    // Changes the color of the button to green, yellow, or red on like, neutral, or dislike
-//    // Updates respective likes Map key to 1, 0, or -1
-//    public void clickFoodButton(View view) {
-//
-//        Button button = (Button) findViewById(view.getId());
-//
-//        // Get the color of the button
-//        ColorDrawable drawable = (ColorDrawable)button.getBackground();
-//        int color = drawable.getColor();
-//
-//        // Get text of button as String
-//        String buttonText = (String) button.getText();
-//
-//        // Debug info
-//        Log.d(TAG,"CLICK!!");
-//        Log.d(TAG,"Color is : ".concat(String.valueOf(color)));
-//        Log.d(TAG,"Text is : ".concat(buttonText));
-//
-//        // Flip through the 3 colors
-//        if(color == color_gold){
-//            button.setBackgroundColor(color_green);
-//            button.setTextColor(Color.WHITE);
-//            likes.put(buttonText, 1);
-//        }else if(color == color_green){
-//            button.setBackgroundColor(color_red);
-//            button.setTextColor(Color.WHITE);
-//            likes.put(buttonText, -1);
-//        }else if(color == color_red){
-//            button.setBackgroundColor(color_gold);
-//            button.setTextColor(Color.BLACK);
-//            likes.put(buttonText, 0);
-//        }
-//    }
 
     // Listener for friend buttons...
     private View.OnClickListener listener = new View.OnClickListener(){
