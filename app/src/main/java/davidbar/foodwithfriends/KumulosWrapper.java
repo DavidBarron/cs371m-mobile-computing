@@ -6,6 +6,7 @@ import android.util.Log;
 import com.kumulos.android.jsonclient.Kumulos;
 import com.kumulos.android.jsonclient.ResponseHandler;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 // Helper wrapper functions for Kumulos calls.
@@ -28,13 +29,33 @@ public class KumulosWrapper {
         Log.d(TAG, "DEF: " + defaultLikes );
         Log.d(TAG, "MAP: " + params.toString());
 
-        Kumulos.call("createUser", params, new ResponseHandler(){
+        Kumulos.call("queryUser", params, new ResponseHandler(){
 
             @Override
-            public void didCompleteWithResult(Object result) {
-                Log.d(TAG, "RESULT: " + result.toString());
+            public void didCompleteWithResult(Object result){
+
+                if (result != null && ((ArrayList)result).size() == 0){
+                    Kumulos.call("createUser", params, new ResponseHandler(){
+
+                        @Override
+                        public void didCompleteWithResult(Object result) {
+                            Log.d(TAG, "RESULT: " + result.toString());
+                        }
+                    });
+                }else{
+                    Log.d(TAG, "User already registered.");
+                }
             }
+
         });
+
+        //Kumulos.call("createUser", params, new ResponseHandler(){
+
+        //    @Override
+        //    public void didCompleteWithResult(Object result) {
+        //        Log.d(TAG, "RESULT: " + result.toString());
+        //    }
+        //});
 
         ContactsMagic.setRegisteredUser(context, num);
 
