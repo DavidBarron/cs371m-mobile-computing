@@ -42,7 +42,7 @@
     <string name="title_activity_choose_friends">ChooseFriendsActivity</string>
     <string name="header_choose_friends">Choose Friends to Invite</string>
     <string name="title_activity_register">RegisterActivity</string>
-    <string name="header_register">Please Confirm Your Phone Number</string>
+    <string name="header_register">Please Enter Your Phone Number</string>
     <string name="invite">Invite Friends</string>
     <string name="more_friends">Don\'t see someone?</string>
 
