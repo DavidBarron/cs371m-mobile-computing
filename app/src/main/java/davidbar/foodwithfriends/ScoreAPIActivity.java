@@ -135,7 +135,7 @@ public class ScoreAPIActivity extends AppCompatActivity {
             Log.d(TAG,sb.toString());
             Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
 
-            if (responses.size() > 0) {
+            if (responses.size() > 0 && responses.get(0).size() > 0) {
                 Map<String, Object> restaurant = responses.get(0).getData().get(0);
                 intent.putExtra("name", (String) restaurant.get("name"));
                 intent.putExtra("address", (String) restaurant.get("address") + ", "
