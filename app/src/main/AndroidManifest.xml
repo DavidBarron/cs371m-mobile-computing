@@ -22,6 +22,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -32,6 +33,7 @@
         </activity>
         <activity
             android:name=".SetLikesActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_set_likes"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -41,6 +43,7 @@
         </activity>
         <activity
             android:name=".SetLocationActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_set_location"
             android:parentActivityName=".SetLikesActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -50,6 +53,7 @@
         </activity>
         <activity
             android:name=".ScoreAPIActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_score_api"
             android:parentActivityName=".SetLocationActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -59,6 +63,7 @@
         </activity>
         <activity
             android:name=".ResultActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_result"
             android:parentActivityName=".SetLikesActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -68,6 +73,7 @@
         </activity>
         <activity
             android:name=".ChooseFriendsActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_choose_friends"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -76,6 +82,7 @@
         </activity>
         <activity
             android:name=".RegisterActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_register"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
