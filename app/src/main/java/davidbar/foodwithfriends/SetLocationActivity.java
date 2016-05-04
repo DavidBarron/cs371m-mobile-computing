@@ -40,6 +40,7 @@ public class SetLocationActivity extends AppCompatActivity implements LocationLi
     private String locationStr = "";
 
     private boolean locationSet = false;
+    private boolean mLocationAutoSet = true;
 
     private HashMap<String, String> mContactsNumbertoName;
 
@@ -118,11 +119,12 @@ public class SetLocationActivity extends AppCompatActivity implements LocationLi
 
         EditText editText = (EditText) findViewById(R.id.addressText);
         Geocoder coder = new Geocoder(this, Locale.getDefault());
-        List<Address> address;
+        List<Address> addresses;
 
         try {
-            address = coder.getFromLocationName(editText.getText().toString(), 1);
-            Address location = address.get(0);
+            mLocationAutoSet = false;
+            addresses = coder.getFromLocationName(editText.getText().toString(), 1);
+            Address location = addresses.get(0);
             latitude = location.getLatitude();
             longitude = location.getLongitude();
             locationSet = true;
@@ -138,44 +140,45 @@ public class SetLocationActivity extends AppCompatActivity implements LocationLi
 
         } catch (Exception ex) {
             showToast(getString(R.string.address_error));
+            mLocationAutoSet = true;
         }
     }
 
-    /** Called when the user clicks the Submit button */
-    /** Address String is converted to GPS coordinates */
-    public void clickGPSButton(View view) {
-        Log.d(TAG, "CLICK!!");
-
-        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        String locationProvider = LocationManager.GPS_PROVIDER;
-        Location location = null;
-
-        // Check for API 23 or greater
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-
-            // If yes, we need to check for permissions
-            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                    || checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                location = locationManager.getLastKnownLocation(locationProvider);
-            }
-            Log.d(TAG, "API 23 or greater");
-        } else {
-            //locationManager.requestLocationUpdates(locationProvider, 0, 0, this);
-            location = locationManager.getLastKnownLocation(locationProvider);
-            Log.d(TAG, "Lower than API 23");
-        }
-
-        if (location != null) {
-            latitude = location.getLatitude();
-            longitude = location.getLongitude();
-            locationSet = true;
-            Log.d(TAG, "GPS successfully set location");
-            showToast(getString(R.string.location_set));
-            //updateLatLonText();
-        }else{
-            showToast(getString(R.string.gps_inaccessible));
-        }
-    }
+//    /** Called when the user clicks the Submit button */
+//    /** Address String is converted to GPS coordinates */
+//    public void clickGPSButton(View view) {
+//        Log.d(TAG, "CLICK!!");
+//
+//        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+//        String locationProvider = LocationManager.GPS_PROVIDER;
+//        Location location = null;
+//
+//        // Check for API 23 or greater
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+//
+//            // If yes, we need to check for permissions
+//            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+//                    || checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+//                location = locationManager.getLastKnownLocation(locationProvider);
+//            }
+//            Log.d(TAG, "API 23 or greater");
+//        } else {
+//            //locationManager.requestLocationUpdates(locationProvider, 0, 0, this);
+//            location = locationManager.getLastKnownLocation(locationProvider);
+//            Log.d(TAG, "Lower than API 23");
+//        }
+//
+//        if (location != null) {
+//            latitude = location.getLatitude();
+//            longitude = location.getLongitude();
+//            locationSet = true;
+//            Log.d(TAG, "GPS successfully set location");
+//            showToast(getString(R.string.location_set));
+//            //updateLatLonText();
+//        }else{
+//            showToast(getString(R.string.gps_inaccessible));
+//        }
+//    }
 
     /** Called when the user clicks the Next button */
     @SuppressWarnings("unchecked")
@@ -225,49 +228,49 @@ public class SetLocationActivity extends AppCompatActivity implements LocationLi
         mToast.show();
     }
 
-    // May return null
-    private double[] getLatLon(){
+//    // May return null
+//    private double[] getLatLon(){
+//
+//        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+//        //locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,this);
+//        String locationProvider = LocationManager.GPS_PROVIDER;
+//        Location location = null;
+//
+//        // Check for API 23 or greater
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+//
+//            // If yes, we need to check for permissions
+//            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+//                    || checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+//                location = locationManager.getLastKnownLocation(locationProvider);
+//            }
+//            Log.d(TAG, "API 23 or greater");
+//        } else {
+//            //locationManager.requestLocationUpdates(locationProvider, 0, 0, this);
+//            location = locationManager.getLastKnownLocation(locationProvider);
+//            Log.d(TAG, "Lower than API 23");
+//        }
+//
+//        if (location != null) {
+//            double lat = location.getLatitude();
+//            double lon = location.getLongitude();
+//            Log.d(TAG, "GPS successfully set location");
+//            double[] retVal = {lat, lon};
+//
+//            return retVal;
+//        }else{
+//            return null;
+//        }
+//    }
 
-        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        //locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,this);
-        String locationProvider = LocationManager.GPS_PROVIDER;
-        Location location = null;
-
-        // Check for API 23 or greater
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-
-            // If yes, we need to check for permissions
-            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                    || checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                location = locationManager.getLastKnownLocation(locationProvider);
-            }
-            Log.d(TAG, "API 23 or greater");
-        } else {
-            //locationManager.requestLocationUpdates(locationProvider, 0, 0, this);
-            location = locationManager.getLastKnownLocation(locationProvider);
-            Log.d(TAG, "Lower than API 23");
-        }
-
-        if (location != null) {
-            double lat = location.getLatitude();
-            double lon = location.getLongitude();
-            Log.d(TAG, "GPS successfully set location");
-            double[] retVal = {lat, lon};
-
-            return retVal;
-        }else{
-            return null;
-        }
-    }
-
-    private double[] getNewLatLon(){
-        double[] coordinates = new double[2];
-
-        coordinates[0] = latitude;
-        coordinates[1] = longitude;
-
-        return coordinates;
-    }
+//    private double[] getNewLatLon(){
+//        double[] coordinates = new double[2];
+//
+//        coordinates[0] = latitude;
+//        coordinates[1] = longitude;
+//
+//        return coordinates;
+//    }
 
     // may return null
     private String getAddress(double lat, double lon){
@@ -327,17 +330,19 @@ public class SetLocationActivity extends AppCompatActivity implements LocationLi
     @Override
     public void onLocationChanged(Location location) {
 
-        Log.d(TAG, "Location changed");
+        if(mLocationAutoSet) {
+            Log.d(TAG, "Location changed");
 
-        latitude = location.getLatitude();
-        longitude = location.getLongitude();
-        locationSet = true;
+            latitude = location.getLatitude();
+            longitude = location.getLongitude();
+            locationSet = true;
 
-        String addressStr = getAddress(latitude, longitude);
+            String addressStr = getAddress(latitude, longitude);
 
-        if(addressStr != null){
-            locationStr = addressStr;
-            updateAddressText();
+            if (addressStr != null) {
+                locationStr = addressStr;
+                updateAddressText();
+            }
         }
 
     }
