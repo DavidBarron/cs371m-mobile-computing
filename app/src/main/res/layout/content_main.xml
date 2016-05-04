@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -15,15 +15,18 @@
     tools:showIn="@layout/activity_main">
 
     <Space
+        android:id="@+id/space_1"
         android:layout_width="match_parent"
         android:layout_height="20dp"/>
 
-    <TextView android:id="@+id/app_name"
+    <TextView
+        android:id="@+id/app_name"
+        android:layout_below="@+id/space_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:textSize="40dp"
+        android:textSize="40sp"
         android:textColor="#ffffff"
         android:textStyle="bold"
         android:shadowColor="#000000"
@@ -33,12 +36,16 @@
         android:text="@string/app_name" />
 
     <Space
+        android:id="@+id/space_2"
+        android:layout_below="@id/app_name"
         android:layout_width="match_parent"
         android:layout_height="70dp"/>
 
     <ImageView
         android:src="@drawable/main_img_temp1"
         android:adjustViewBounds="true"
+        android:layout_below="@+id/space_2"
+        android:layout_centerVertical="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -51,6 +58,7 @@
         android:layout_margin="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/friendsButton"
         android:onClick="clickMyselfButton"/>
 
     <Button
@@ -62,6 +70,7 @@
         android:layout_margin="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:onClick="clickFriendsButton"/>
 
-</LinearLayout>
+</RelativeLayout>
