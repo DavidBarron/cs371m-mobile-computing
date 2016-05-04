@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,9 +28,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-public class SetLocationActivity extends AppCompatActivity {
+public class SetLocationActivity extends AppCompatActivity implements LocationListener{
 
     private static final String TAG = "SetLocation";
+
+    private LocationManager mLocationManager;
+    private LocationListener mLocationListener;
 
     private double latitude = 30.2849185;
     private double longitude = -97.7340567;
@@ -52,6 +56,26 @@ public class SetLocationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_location);
 
+        mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+
+        // Check for API 23 or greater
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+
+            // If yes, we need to check for permissions
+            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                    || checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+                mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+            }
+            Log.d(TAG, "API 23 or greater");
+        } else {
+            //locationManager.requestLocationUpdates(locationProvider, 0, 0, this);
+            mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+            mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+            Log.d(TAG, "Lower than API 23");
+        }
+
         EditText editText = (EditText) findViewById(R.id.addressText);
 
         editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -69,22 +93,22 @@ public class SetLocationActivity extends AppCompatActivity {
         mSelectedFriends = (HashMap<String, String>) intent.getSerializableExtra("selectedFriends");
         mFriendLikes = (ArrayList) intent.getSerializableExtra("friendLikes");
 
-        double[] latLon = getLatLon();
+        //double[] latLon = getNewLatLon();
 
-        if(latLon != null){
-            latitude = latLon[0];
-            longitude = latLon[1];
-        }
+        //if(latLon != null){
+        //    latitude = latLon[0];
+        //    longitude = latLon[1];
+        //}
 
         // Hack for now
-        locationSet = true;
+        //locationSet = true;
 
-        String addressStr = getAddress(latitude, longitude);
+        //String addressStr = getAddress(latitude, longitude);
 
-        if(addressStr != null){
-            locationStr = addressStr;
-            updateAddressText();
-        }
+        //if(addressStr != null){
+        //    locationStr = addressStr;
+        //    updateAddressText();
+        //}
     }
 
     /** Called when the user clicks the Submit button */
@@ -205,6 +229,7 @@ public class SetLocationActivity extends AppCompatActivity {
     private double[] getLatLon(){
 
         LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        //locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,this);
         String locationProvider = LocationManager.GPS_PROVIDER;
         Location location = null;
 
@@ -233,6 +258,15 @@ public class SetLocationActivity extends AppCompatActivity {
         }else{
             return null;
         }
+    }
+
+    private double[] getNewLatLon(){
+        double[] coordinates = new double[2];
+
+        coordinates[0] = latitude;
+        coordinates[1] = longitude;
+
+        return coordinates;
     }
 
     // may return null
@@ -288,5 +322,38 @@ public class SetLocationActivity extends AppCompatActivity {
     public void hideKeyboard(View view) {
         InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+
+        Log.d(TAG, "Location changed");
+
+        latitude = location.getLatitude();
+        longitude = location.getLongitude();
+        locationSet = true;
+
+        String addressStr = getAddress(latitude, longitude);
+
+        if(addressStr != null){
+            locationStr = addressStr;
+            updateAddressText();
+        }
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+        Log.d(TAG,"disable");
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+        Log.d(TAG,"enable");
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+        Log.d(TAG,"status");
     }
 }
