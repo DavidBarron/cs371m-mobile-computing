@@ -183,40 +183,51 @@ public class SetLikesActivity extends AppCompatActivity {
 
     /** Called when the user clicks the Next button */
     public void clickNextButton(View view) {
-        Log.d(TAG, "CLICK!!");
-        Log.d(TAG, "FINAL MAP: " + mLikes.toString());
+        try {
+            Log.d(TAG, "CLICK!!");
+            Log.d(TAG, "FINAL MAP: " + mLikes.toString());
 
-        String num = ContactsMagic.getMyPhoneNumber(this);
-        String sLikes = CuisineMagic.convertLikesMapToString(mLikes);
+            String num = ContactsMagic.getMyPhoneNumber(this);
+            String sLikes = CuisineMagic.convertLikesMapToString(mLikes);
 
-        // Save user likes to database
-        if(num != null){
-            KumulosWrapper.updateUser(num,sLikes);
+            // Save user likes to database
+            if (num != null) {
+                KumulosWrapper.updateUser(num, sLikes);
+            }
+
+            // Add user likes ot be included in calculations
+            mFriendLikes.add(mLikes);
+
+            Intent intent = new Intent(this, SetLocationActivity.class);
+
+            intent.putExtra("friendLikes", mFriendLikes);
+            intent.putExtra("selectedFriends", mSelectedFriends);
+            intent.putExtra("contacts", mContactsNumbertoName);
+
+            //intent.putExtra("likes", mLikes);
+            startActivity(intent);
+        }catch(Exception e){
+            // Don't start new activity
         }
-
-        // Add user likes ot be included in calculations
-        mFriendLikes.add(mLikes);
-
-        Intent intent = new Intent(this, SetLocationActivity.class);
-
-        intent.putExtra("friendLikes", mFriendLikes);
-        intent.putExtra("selectedFriends", mSelectedFriends);
-        intent.putExtra("contacts", mContactsNumbertoName);
-
-        //intent.putExtra("likes", mLikes);
-        startActivity(intent);
     }
 
+    // Go back to MainActivity
+    // Save user preferences if available
+    // Ignore them if they haven't been set
     public void clickBackButton(View view){
 
-        String num = ContactsMagic.getMyPhoneNumber(this);
-        String sLikes = CuisineMagic.convertLikesMapToString(mLikes);
+        try {
+            String num = ContactsMagic.getMyPhoneNumber(this);
+            String sLikes = CuisineMagic.convertLikesMapToString(mLikes);
 
-        // Save user likes to database
-        if(num != null){
-            KumulosWrapper.updateUser(num,sLikes);
+            // Save user likes to database
+            if (num != null) {
+                KumulosWrapper.updateUser(num, sLikes);
+            }
+        }catch (Exception e){
+            // Nothing...
+        }finally{
+            finish();
         }
-
-        finish();
     }
 }
