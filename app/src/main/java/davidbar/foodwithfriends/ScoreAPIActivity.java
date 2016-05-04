@@ -134,23 +134,26 @@ public class ScoreAPIActivity extends AppCompatActivity {
             }
             Log.d(TAG,sb.toString());
             Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
-            Map<String, Object> restaurant = responses.get(0).getData().get(0);
-            intent.putExtra("name", (String) restaurant.get("name"));
-            intent.putExtra("address", (String)restaurant.get("address") + ", "
-                    + (String)restaurant.get("locality") + " "
-                    + (String)restaurant.get("region") + ", "
-                    + (String)restaurant.get("postcode"));
-            intent.putExtra("phone", (String) restaurant.get("tel"));
 
-            ArrayList<String> friends = new ArrayList<>();
+            if (responses.size() > 0) {
+                Map<String, Object> restaurant = responses.get(0).getData().get(0);
+                intent.putExtra("name", (String) restaurant.get("name"));
+                intent.putExtra("address", (String) restaurant.get("address") + ", "
+                        + (String) restaurant.get("locality") + " "
+                        + (String) restaurant.get("region") + ", "
+                        + (String) restaurant.get("postcode"));
+                intent.putExtra("phone", (String) restaurant.get("tel"));
 
-            for (String s : mSelectedFriends.keySet()){
-                friends.add(s);
+                ArrayList<String> friends = new ArrayList<>();
+
+                for (String s : mSelectedFriends.keySet()) {
+                    friends.add(s);
+                }
+
+                intent.putExtra("friends", friends);
+
+                startActivity(intent);
             }
-
-            intent.putExtra("friends",friends);
-
-            startActivity(intent);
         }
     }
 }
