@@ -10,41 +10,14 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="davidbar.foodwithfriends.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <Space
-        android:id="@+id/space_1"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"/>
-
-    <TextView
-        android:id="@+id/app_name"
-        android:layout_below="@+id/space_1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:textSize="40sp"
-        android:textColor="#ffffff"
-        android:textStyle="bold"
-        android:shadowColor="#000000"
-        android:shadowDx="1.0"
-        android:shadowDy="1.0"
-        android:shadowRadius="10.0"
-        android:text="@string/app_name" />
-
-    <Space
-        android:id="@+id/space_2"
-        android:layout_below="@id/app_name"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"/>
 
     <ImageView
         android:src="@drawable/main_img_temp1"
         android:adjustViewBounds="true"
-        android:layout_below="@+id/space_2"
+        android:layout_above="@+id/myselfButton"
         android:layout_centerVertical="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -59,7 +32,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/friendsButton"
-        android:onClick="clickMyselfButton"/>
+        android:onClick="clickMyselfButton"
+        android:theme="@style/MyButton"/>
 
     <Button
         android:id="@+id/friendsButton"
@@ -67,10 +41,15 @@
         android:textStyle="bold"
         android:background="#FF7F50"
         android:textColor="#ffffff"
-        android:layout_margin="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="clickFriendsButton"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="40dp"
         android:layout_alignParentBottom="true"
-        android:onClick="clickFriendsButton"/>
+        android:layout_centerHorizontal="true"
+        android:theme="@style/MyButton"/>
 
 </RelativeLayout>

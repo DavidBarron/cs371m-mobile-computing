@@ -1,12 +1,7 @@
 package davidbar.foodwithfriends;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -14,12 +9,11 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.kumulos.android.jsonclient.Kumulos;
-import com.kumulos.android.jsonclient.ResponseHandler;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
+
+import com.kumulos.android.jsonclient.Kumulos;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,11 +26,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         // Only call this ONCE in here, never in other Activities
         Kumulos.initWithAPIKeyAndSecretKey(KUMULOS_API_KEY, KUMULOS_SECRET_KEY, this);
 
+        // Check to if user is registered
         if (!ContactsMagic.checkRegisteredUser(this)) {
             String num = ContactsMagic.getMyPhoneNumber(this);
             if(!num.equals("PHONE_NUMBER_UNKNOWN")){
@@ -73,28 +71,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "CLICK!!");
         Intent intent = new Intent(this, ChooseFriendsActivity.class);
         startActivity(intent);
-    }
-
-    private void registerUser(String num){
-        HashMap<String,String> map = new HashMap<>();
-        String defaultLikes = CuisineMagic.getDefaultLikes();
-
-        // Note ALL function and param names MUST be in lowerCamelCase
-        map.put("userNumber",num);
-        map.put("likes",defaultLikes);
-
-        Log.d(TAG, "NUMBER: " + num );
-        Log.d(TAG, "DEF: " + defaultLikes );
-        Log.d(TAG, "MAP: " + map.toString());
-
-        Kumulos.call("createUser",map,new ResponseHandler(){
-            @Override
-            public void didCompleteWithResult(Object result) {
-                Log.d(TAG, "RESULT: " + result.toString());
-            }
-        });
-        ContactsMagic.setRegisteredUser(this, num);
-        Log.d(TAG, "REGISTER USER DONE");
     }
 
     @Override
