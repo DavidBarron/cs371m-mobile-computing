@@ -1,53 +1,49 @@
 <resources>
+
+    <!-- Global -->
     <string name="app_name">Food With Friends</string>
     <string name="action_settings">Settings</string>
-    <string name="myselfButton_str">Myself</string>
-    <string name="friendsButton_str">Select Friends to Join Me</string>
-    <string name="title_activity_set_likes">SetLikesActivity</string>
-    <string name="header_set_likes">Set your likes and dislikes</string>
     <string name="next">Next</string>
     <string name="back">Back</string>
-    <string name="submit">Submit</string>
-    <string name="getLocation">Set using GPS</string>
-    <string name="food1">American</string>
-    <string name="food2">Chinese</string>
-    <string name="food3">Cuban</string>
-    <string name="food4">Indian</string>
-    <string name="food5">Italian</string>
-    <string name="food6">Japanese</string>
-    <string name="food7">Korean</string>
-    <string name="food8">Mexican</string>
-    <string name="food9">Taiwanese</string>
-    <string name="food10">Thai</string>
-    <string name="food11">Vietnamese</string>
-    <string name="hint_address">Enter Address</string>
+
+    <!-- MainActivity -->
+    <string name="textQuestion">Who are you eating with?</string>
+    <string name="myselfButton_str">Myself</string>
+    <string name="friendsButton_str">Select Friends to Join Me</string>
+
+    <!-- Register -->
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="header_register">Please Enter Your Phone Number</string>
+
+    <!-- Choose Friends -->
+    <string name="title_activity_choose_friends">ChooseFriendsActivity</string>
+    <string name="header_choose_friends">Choose Friends to Invite</string>
+    <string name="more_friends">Don\'t see someone?</string>
+    <string name="invite">Invite Friends</string>
+
+    <!-- Set Likes -->
+    <string name="title_activity_set_likes">SetLikesActivity</string>
+    <string name="header_set_likes">Set your likes and dislikes</string>
+
+    <!-- Set Location -->
     <string name="title_activity_set_location">SetLocationActivity</string>
-    <string name="title_activity_score_api">ScoreAPIActivity</string>
     <string name="header_set_location">Set starting location</string>
-    <string name="location_set">You location has been set.</string>
+    <string name="hint_address">Enter Address</string>
+    <string name="submit">Submit</string>
     <string name="location_not_set">Please set your location.</string>
     <string name="address_error">Unable to query address. Double check your entry or try another.</string>
-    <string name="string_lat_init">LAT : not set</string>
-    <string name="string_lon_init">LON : not set</string>
-    <string name="string_lat">LAT : %1$f</string>
-    <string name="string_lon">LON : %1$f</string>
+    <string name="location_set">You location has been set.</string>
+
+    <!-- API -->
+    <string name="title_activity_score_api">ScoreAPIActivity</string>
+    <string name="wait">PLEASE WAIT...</string>
+
+    <!-- Results -->
     <string name="title_activity_result">ResultActivity</string>
-    <string name="gps_inaccessible">Cannot access GPS. Please enter an address instead.</string>
     <string name="header_result">Your Result</string>
     <string name="str_name">NAME:</string>
     <string name="str_address">ADDRESS:</string>
     <string name="str_phone">PHONE:</string>
     <string name="str_result_error">No result to display.</string>
-    <string name="wait">PLEASE WAIT...</string>
-    <string name="title_activity_choose_friends">ChooseFriendsActivity</string>
-    <string name="header_choose_friends">Choose Friends to Invite</string>
-    <string name="title_activity_register">RegisterActivity</string>
-    <string name="header_register">Please Enter Your Phone Number</string>
-    <string name="invite">Invite Friends</string>
-    <string name="more_friends">Don\'t see someone?</string>
-    <string name="title_activity_blank">BlankActivity</string>
-    <string name="title_activity_main2">Main2Activity</string>
-    <string name="textQuestion">Who are you eating with?</string>
-
 
 </resources>

@@ -90,14 +90,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="davidbar.foodwithfriends.MainActivity" />
         </activity>
-        <activity
-            android:name=".BlankActivity"
-            android:label="@string/title_activity_blank"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Main2Activity"
-            android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+
     </application>
 
 </manifest>
