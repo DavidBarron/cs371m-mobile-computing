@@ -47,6 +47,7 @@
     <string name="more_friends">Don\'t see someone?</string>
     <string name="title_activity_blank">BlankActivity</string>
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="textQuestion">Who are you eating with?</string>
 
 
 </resources>

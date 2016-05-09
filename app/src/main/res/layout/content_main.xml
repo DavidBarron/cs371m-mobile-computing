@@ -13,14 +13,32 @@
     tools:context="davidbar.foodwithfriends.MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <Space
+        android:id="@+id/topSpace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <ImageView
         android:src="@drawable/main_img_temp1"
         android:adjustViewBounds="true"
-        android:layout_above="@+id/myselfButton"
+        android:layout_above="@+id/mainQuestion"
+        android:layout_below="@+id/topSpace"
         android:layout_centerVertical="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/mainQuestion"
+        android:text="@string/textQuestion"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:background="#ffffff"
+        android:gravity="center_horizontal"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/myselfButton"/>
 
     <Button
         android:id="@+id/myselfButton"
